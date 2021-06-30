@@ -6,7 +6,6 @@ public class Plant : MonoBehaviour{
     private bool isMaxSized = false;
     private Logic logic = null;
 
-
     void Start(){
         this.logic=GameObject.Find("GameManager").GetComponent<Logic>();
     }

@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UIController : MonoBehaviour {
-    public GameObject logicObject;
     private Logic logic = null;
 
     void Start() {
         // 로직 정보를 가져오기위함.
-        logic=logicObject.GetComponent<Logic>();
-
+        logic = GameObject.Find("GameManager").GetComponent<Logic>();
     }
 
     void Update() {
