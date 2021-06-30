@@ -70,7 +70,7 @@ public class Bee : MonoBehaviour {
                 break;
 
             case State.MOVE:
-                Fly();
+                //Fly();
                 break;
 
             case State.DEAD: BeeIsDead(); break;
