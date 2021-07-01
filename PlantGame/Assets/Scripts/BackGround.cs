@@ -8,7 +8,7 @@ public class BackGround : MonoBehaviour
     [SerializeField] float mspeed = 0f;
 
     float bgdHeight = 0f;
-    float bgBottom = 2f;
+    private float bgBottom = 0f;
 
 
 
@@ -16,6 +16,7 @@ public class BackGround : MonoBehaviour
     {
         float tlength = mBackgrounds[0].GetComponent<SpriteRenderer>().sprite.bounds.size.y;
         bgBottom = -tlength;
+        //bgBottom = 3;
         bgdHeight = tlength * mBackgrounds.Length;
     }
 
@@ -50,16 +51,18 @@ public class BackGround : MonoBehaviour
         //}
 
 
-        //    if (transform.position.y <= bgBottom) 
+        //    if (transform.position.y <= bgBottom)
         //    {
         //        Reposition();
         //    }
-
-        //    public void Reposition()
+        //        Debug.Log("bgHeight = " + bgdHeight);
+        //        Debug.Log("bgBottom = " + bgBottom);
+        //}
+        //private void Reposition()
         //    {
-        //        Vector2 offset = new Vector2(bgBottom * 2f, 0);
+        //        Vector2 offset = new Vector2(0,bgBottom * 2f);
         //        transform.position = (Vector2)transform.position + offset;
         //    }
-        //}
+
     }
 }
