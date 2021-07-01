@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Plant : MonoBehaviour{
+    [SerializeField]
+    private Color color;
+    private SpriteRenderer spriteRenderer;
+
     private enum PlantState {
         START = 0,
         HGROW,
@@ -23,6 +27,17 @@ public class Plant : MonoBehaviour{
 
     // 다 컸을때 옆으로 더 크는 양
     private Vector3 extraGrowthScale;
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+    //충돌 시 지정 색상으로 변화
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        spriteRenderer.color = color;
+
+    }
 
     void Start(){
         logic = GameObject.Find("GameManager").GetComponent<Logic>();
