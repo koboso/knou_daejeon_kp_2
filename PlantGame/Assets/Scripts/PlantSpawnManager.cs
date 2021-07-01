@@ -66,12 +66,16 @@ public class PlantSpawnManager : MonoBehaviour {
         p.transform.position += new Vector3(0.0f, (float)indexHead, 0.0f);
 
         indexHead++;
-        if(plantList.Count > 10)    // 플랜트가 열개 넘으면 맨 오래된 플랜트를 지움
+
+        if (plantList.Count > 10)    // 플랜트가 열개 넘으면 맨 오래된 플랜트를 지움
         {
             Destroy(plantList[indexTail]);
             indexTail++;
         }
-
+        for (int i = indexTail; i < indexHead; i++)
+        {
+            plantList[i].GetComponent<SpriteRenderer>().sortingOrder = 20-(i-indexTail);
+        }
         plantState = PlantState.GROW;
     }
 

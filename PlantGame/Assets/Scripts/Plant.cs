@@ -28,6 +28,11 @@ public class Plant : MonoBehaviour{
         logic = GameObject.Find("GameManager").GetComponent<Logic>();
         psm = GameObject.Find("PlantTree").GetComponent<PlantSpawnManager>();
 
+        if(Random.Range(0f, 1f) > 0.5f)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            Debug.Log("좌우반전!");
+        }
         initScale = new Vector3(0.2f, 0.2f, 1.0f);  // 안큰거
         endScale = new Vector3(1.0f, 1.0f, 1.0f);   // 다 큰거
 
