@@ -5,9 +5,8 @@ using UnityEngine;
 public class Logic : MonoBehaviour{
     // Game State 
     public enum GameState {READY = 0, PLAY, CLEAR, GAMEOVER, PAUSE };
-    public GameState state = GameState.READY;
-
-
+    public GameState state = GameState.PLAY;
+    public float growthSpeed = 0.01f;       // 프레임당 성장 속도
 
     void Start(){
         

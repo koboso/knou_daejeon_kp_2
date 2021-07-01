@@ -32,12 +32,12 @@ public class PlantSpawnManager : MonoBehaviour {
     private void ClearPlant() {
         if (isInit) return;
         // 동적 생성된 식물 리스트 삭제.
-        for (int i = 0; i<plantList.Count; i++) {
+        for (int i = indexTail; i < indexHead; i++) {
             Destroy(plantList[i]);
         }
         plantList.Clear();
         isInit=true;
-        indexHead=0;
+        indexTail = indexHead = 0;
         plantState=PlantState.READY;
     }
 
@@ -49,23 +49,29 @@ public class PlantSpawnManager : MonoBehaviour {
         }
         if (logic.state!=Logic.GameState.PLAY) return;
 
-//        GameObject plant = plantList[indexHead - 1];
-
-        transform.position = initPosition 
-            + new Vector3(0f, - indexHead + 1 - topPlant.plantHeight, 0f);
+        // 나무 전체가 아래로 이동
+        transform.position = initPosition + new Vector3(0f, - indexHead + 1 - topPlant.plantHeight, 0f);
 
         isInit = false;
     }
 
     public void CreatePlant() {
         GameObject p = Instantiate(Resources.Load("Prefabs/BabyPlant") as GameObject, transform);
+
         plantList.Add(p);
         topPlant = p.GetComponent<Plant>() as Plant;
+//        p.GetComponent<SpriteRenderer>().sortingOrder = -indexHead;
 
         p.name = "Plant-" + indexHead;
         p.transform.position += new Vector3(0.0f, 1.0f, 0.0f) * indexHead;
 
         indexHead++;
+        if(plantList.Count > 10)    // 플랜트가 열개 넘으면 맨 오래된 플랜트를 지움
+        {
+            Destroy(plantList[indexTail]);
+            indexTail++;
+        }
+
         plantState = PlantState.GROW;
     }
 

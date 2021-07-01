@@ -12,27 +12,26 @@ public class Plant : MonoBehaviour{
     private PlantState state = PlantState.START;
 
     private Logic logic = null;
-    private PlantSpawnManager psm = null;
+    private PlantSpawnManager psm = null;   // 다 크면 부모한테 알리기 위해
 
-    public float growthSpeed = 0.01f;
-    public float plantHeight = 0f;
-    public float extraGrowth = 0f;
+    public float plantHeight = 0f;          // 현재 키
+    public float extraGrowth = 0f;          // 추가로 옆으로 더 크는 양
 
+    // 시작 스케일에서 키성장 종료 스케일까지
     private Vector3 initScale;
     private Vector3 endScale;
-    private Vector3 deltaScale;
+
+    // 다 컸을때 옆으로 더 크는 양
     private Vector3 extraGrowthScale;
 
     void Start(){
         logic = GameObject.Find("GameManager").GetComponent<Logic>();
         psm = GameObject.Find("PlantTree").GetComponent<PlantSpawnManager>();
 
-        initScale = new Vector3(0.2f, 0.2f, 1.0f);
-        endScale = new Vector3(1.0f, 1.0f, 1.0f);
+        initScale = new Vector3(0.2f, 0.2f, 1.0f);  // 안큰거
+        endScale = new Vector3(1.0f, 1.0f, 1.0f);   // 다 큰거
 
-        deltaScale = endScale - initScale;
-
-        extraGrowthScale = new Vector3(0.5f, 0.0f, 0f);
+        extraGrowthScale = new Vector3(0.5f, 0.0f, 0f); // 옆으로 더 클 양
     }
 
     // Update is called once per frame
@@ -78,8 +77,8 @@ public class Plant : MonoBehaviour{
                 return true;
 
             case PlantState.START:
-            case PlantState.HGROW:
-                plantHeight += growthSpeed;
+            case PlantState.HGROW:  // 부피성장단계
+                plantHeight += logic.growthSpeed;
 
                 if (plantHeight >= 1.0f)
                 {
@@ -87,15 +86,19 @@ public class Plant : MonoBehaviour{
                     Debug.Log("다 자랐습니다.");
                     state = PlantState.LGROW;
 
+                    // 위로 다 컸으면, 새 플랜트를 만든다.
                     psm.CreatePlant();
                 }
+
+                // 연속적으로 성장하기 위한 Scale 값을 계산
                 transform.localScale = Vector3.Slerp(initScale, endScale, plantHeight);
 
                 break;
-            case PlantState.LGROW:
-                extraGrowth += growthSpeed / 3;
+            case PlantState.LGROW:  // 폭 성장단계 Lateral Growth
+                extraGrowth += logic.growthSpeed / 3;       // 1/3 속도로 성장
                 if(extraGrowth >= 1)
                 {
+                    extraGrowth = 1f;
                     state = PlantState.GROWN;
                     Debug.Log("옆으로 다 자랐습니다.");
                 }
