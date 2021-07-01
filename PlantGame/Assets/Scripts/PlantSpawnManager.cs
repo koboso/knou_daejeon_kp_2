@@ -5,9 +5,11 @@ using UnityEngine;
 public class PlantSpawnManager : MonoBehaviour {
     Logic logic = null;
     List<GameObject> plantList;
+    private Plant topPlant = null;
 
     bool isInit = false;
-    int index = 0;
+    int indexHead = 0;
+    int indexTail = 0;
 
     enum PlantState {
         READY = 0, CREATE = 1, GROW, WAIT,
@@ -15,11 +17,16 @@ public class PlantSpawnManager : MonoBehaviour {
 
     PlantState plantState = PlantState.READY;
 
+    private Vector3 initPosition;
 
     void Start() {
         isInit=false;
+
         plantList=new List<GameObject>();
         logic=GameObject.Find("GameManager").GetComponent<Logic>();
+
+        CreatePlant();
+        initPosition = transform.position;
     }
 
     private void ClearPlant() {
@@ -30,7 +37,7 @@ public class PlantSpawnManager : MonoBehaviour {
         }
         plantList.Clear();
         isInit=true;
-        index=0;
+        indexHead=0;
         plantState=PlantState.READY;
     }
 
@@ -41,17 +48,28 @@ public class PlantSpawnManager : MonoBehaviour {
             plantState=PlantState.READY;
         }
         if (logic.state!=Logic.GameState.PLAY) return;
-        isInit=false;
 
+//        GameObject plant = plantList[indexHead - 1];
+
+        transform.position = initPosition 
+            + new Vector3(0f, - indexHead + 1 - topPlant.plantHeight, 0f);
+
+        isInit = false;
     }
 
-    void CreatePlant() {
-        GameObject p = Instantiate(Resources.Load("Prefabs/Plant") as GameObject);
+    public void CreatePlant() {
+        GameObject p = Instantiate(Resources.Load("Prefabs/BabyPlant") as GameObject, transform);
         plantList.Add(p);
-        index++;
-        plantState=PlantState.GROW;
+        topPlant = p.GetComponent<Plant>() as Plant;
+
+        p.name = "Plant-" + indexHead;
+        p.transform.position += new Vector3(0.0f, 1.0f, 0.0f) * indexHead;
+
+        indexHead++;
+        plantState = PlantState.GROW;
     }
 
+    /*
     // 꽃이 자라는곳
     void GrowPlant()
     {
@@ -63,5 +81,5 @@ public class PlantSpawnManager : MonoBehaviour {
         }
 
     }
-
+    */
 }
