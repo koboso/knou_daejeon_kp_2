@@ -7,7 +7,7 @@ public class PlantOffset : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.speed = Random.Range(0.8f, 1.2f);
+        animator.speed = Random.Range(0.2f, 1.8f);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

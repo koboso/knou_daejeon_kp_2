@@ -63,7 +63,7 @@ public class PlantSpawnManager : MonoBehaviour {
 //        p.GetComponent<SpriteRenderer>().sortingOrder = -indexHead;
 
         p.name = "Plant-" + indexHead;
-        p.transform.position += new Vector3(0.0f, 1.0f, 0.0f) * indexHead;
+        p.transform.position += new Vector3(0.0f, (float)indexHead, 0.0f);
 
         indexHead++;
         if(plantList.Count > 10)    // 플랜트가 열개 넘으면 맨 오래된 플랜트를 지움

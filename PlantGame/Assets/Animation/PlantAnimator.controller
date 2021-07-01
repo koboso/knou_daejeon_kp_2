@@ -34,14 +34,14 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours:
-  - {fileID: 3164481066130896632}
+  - {fileID: -398877523725592351}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 1
+  m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 1240cbc647f00ad48b1a4099e7ce6ad0, type: 2}
   m_Tag: 
@@ -49,6 +49,18 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: offset
   m_TimeParameter: 
+--- !u!114 &-398877523725592351
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f1383070b5cfc049a60b0c380ab68e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
@@ -57,13 +69,7 @@ AnimatorController:
   m_PrefabAsset: {fileID: 0}
   m_Name: PlantAnimator
   serializedVersion: 5
-  m_AnimatorParameters:
-  - m_Name: offset
-    m_Type: 1
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+  m_AnimatorParameters: []
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -87,5 +93,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f1383070b5cfc049a60b0c380ab68e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3887618875245000565
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c07b1f496b7e7dc438840af05a65e9df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
