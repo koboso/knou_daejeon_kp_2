@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlantSpawnManager : MonoBehaviour {
     Logic logic = null;
+    UIController ui = null;
     List<GameObject> plantList;
     private Plant topPlant = null;
 
@@ -24,6 +25,7 @@ public class PlantSpawnManager : MonoBehaviour {
 
         plantList=new List<GameObject>();
         logic=GameObject.Find("GameManager").GetComponent<Logic>();
+        ui = GameObject.Find("UICanvas").GetComponent<UIController>();
 
         CreatePlant();
         initPosition = transform.position;
@@ -41,7 +43,9 @@ public class PlantSpawnManager : MonoBehaviour {
         plantState=PlantState.READY;
     }
 
+
     void Update() {
+
         if (logic==null) return;
 
         if (logic.state==Logic.GameState.GAMEOVER||logic.state==Logic.GameState.CLEAR) {
@@ -50,7 +54,10 @@ public class PlantSpawnManager : MonoBehaviour {
         if (logic.state!=Logic.GameState.PLAY) return;
 
         // 나무 전체가 아래로 이동
-        transform.position = initPosition + new Vector3(0f, - indexHead + 1 - topPlant.plantHeight, 0f);
+        float height = indexHead - 1 + topPlant.plantHeight;
+        transform.position = initPosition + new Vector3(0f, -height, 0f);
+
+        logic.setHeight(height);
 
         isInit = false;
     }
@@ -77,6 +84,8 @@ public class PlantSpawnManager : MonoBehaviour {
             plantList[i].GetComponent<SpriteRenderer>().sortingOrder = 20-(i-indexTail);
         }
         plantState = PlantState.GROW;
+
+        ui.DisplayFloatingText("New Bud Sprouts!");
     }
 
     /*
