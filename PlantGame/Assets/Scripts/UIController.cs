@@ -6,9 +6,9 @@ using TMPro;
 public class UIController : MonoBehaviour {
     private Logic logic = null;
 
-    public GameOverScreen GameOverScreen;
+    private GameOnScreen gameOnScreen;
+    private GameOverScreen gameOverScreen;
     
-
     [SerializeField] private GameObject floatingTextPrefab;
     private GameObject ftparent = null;
 
@@ -19,7 +19,12 @@ public class UIController : MonoBehaviour {
         logic = GameObject.Find("GameManager").GetComponent<Logic>();
         ftparent = GameObject.Find("FloatingTextParent");
         scoreLine = GameObject.Find("ScoreLine").GetComponentInChildren<TextMeshProUGUI>();
-        if(scoreLine)
+
+        gameOnScreen = GameObject.Find("GameOnScreen").GetComponent<GameOnScreen>();
+        gameOverScreen = GameObject.Find("GameOverScreen").GetComponent<GameOverScreen>();
+        gameOverScreen.Hide();
+
+        if (scoreLine)
         {
             Debug.Log("scoreLine 찾음");
         } else
@@ -31,17 +36,11 @@ public class UIController : MonoBehaviour {
     void Update() {
         switch (logic.state){
             case Logic.GameState.READY:
-                if(GameOverScreen)
-                {
-                    GameOverScreen.Hide();
-                }
                 // 준비 상태의 UI처리
-//                DisplayScoreLine();
+                GameReady();
                 break;
             case Logic.GameState.PLAY:
-                
-                // 플레이 상태의 UI 처리
-                //                DisplayScoreLine();
+               
                 break;
             case Logic.GameState.PAUSE:
                 // 멈춤 상태의 UI처리
@@ -79,7 +78,15 @@ public class UIController : MonoBehaviour {
 
     private void GameOver()
     {
-        GameOverScreen.Setup(logic.treeHeight);
+        if(gameOverScreen)
+        {
+            gameOverScreen.Setup(logic.treeHeight);
+        }
     }
 
+    private void GameReady()
+    {
+        if (gameOnScreen)
+            gameOnScreen.Show();
+    }
 }

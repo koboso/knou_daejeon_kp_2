@@ -7,8 +7,7 @@ public class PlantSpawnManager : MonoBehaviour {
     UIController ui = null;
     List<GameObject> plantList;
     private Plant topPlant = null;
-    private GameOnScreen gameOnScreen;
-
+ 
     bool isInit = false;
     int indexHead = 0;
     int indexTail = 0;
@@ -19,13 +18,14 @@ public class PlantSpawnManager : MonoBehaviour {
         isInit=false;
 
         plantList=new List<GameObject>();
+
         logic=GameObject.Find("GameManager").GetComponent<Logic>();
         ui = GameObject.Find("UICanvas").GetComponent<UIController>();
+
         initPosition = transform.position;
-        gameOnScreen = GameObject.Find("GameStart").GetComponent<GameOnScreen>();
 
         ReadyPlant();
-
+ 
     }
 
     // 모든 영역 초기화
@@ -41,7 +41,7 @@ public class PlantSpawnManager : MonoBehaviour {
         logic.setHeight(0f);
       
         transform.position = initPosition;      // 위치도 초기화
-        gameOnScreen.Show();
+
         CreatePlant();
     }
 
@@ -69,7 +69,6 @@ public class PlantSpawnManager : MonoBehaviour {
 
         plantList.Add(p);
         topPlant = p.GetComponent<Plant>() as Plant;
-//        p.GetComponent<SpriteRenderer>().sortingOrder = -indexHead;
 
         p.name = "Plant-" + indexHead;
         p.transform.position += new Vector3(0.0f, (float)indexHead*50, 0.0f);
@@ -93,17 +92,4 @@ public class PlantSpawnManager : MonoBehaviour {
         ui.DisplayFloatingText("New Bud!");
     }
 
-    /*
-    // 꽃이 자라는곳
-    void GrowPlant()
-    {
-        // 최대 사이즈로 자라났다면. 새로운 식물을 생성하도록.
-       if(plantList[index].GetComponent<Plant>().GrowPlant())
-        {
-            plantState=PlantState.CREATE;
-            CreatePlant();
-        }
-
-    }
-    */
 }

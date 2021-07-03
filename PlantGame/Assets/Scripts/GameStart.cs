@@ -22,7 +22,7 @@ public class GameStart : MonoBehaviour
     void Start()
     {
         logic = GameObject.Find("GameManager").GetComponent<Logic>();
-        GameOnScreen = GameObject.Find("GameStart").GetComponent<GameOnScreen>();
+        GameOnScreen = GameObject.Find("GameOnScreen").GetComponent<GameOnScreen>();
     }
 
     // Update is called once per frame
