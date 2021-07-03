@@ -7,16 +7,11 @@ public class PlantSpawnManager : MonoBehaviour {
     UIController ui = null;
     List<GameObject> plantList;
     private Plant topPlant = null;
+    private GameOnScreen gameOnScreen;
 
     bool isInit = false;
     int indexHead = 0;
     int indexTail = 0;
-
-    enum PlantState {
-        READY = 0, CREATE = 1, GROW, WAIT,
-    }
-
-    PlantState plantState = PlantState.READY;
 
     private Vector3 initPosition;
 
@@ -27,12 +22,14 @@ public class PlantSpawnManager : MonoBehaviour {
         logic=GameObject.Find("GameManager").GetComponent<Logic>();
         ui = GameObject.Find("UICanvas").GetComponent<UIController>();
         initPosition = transform.position;
+        gameOnScreen = GameObject.Find("GameStart").GetComponent<GameOnScreen>();
 
-        CreatePlant();
+        ReadyPlant();
 
     }
 
-    private void ClearPlant() {
+    // 모든 영역 초기화
+    private void ReadyPlant() {
         if (isInit) return;
         // 동적 생성된 식물 리스트 삭제.
         for (int i = indexTail; i < indexHead; i++) {
@@ -41,7 +38,11 @@ public class PlantSpawnManager : MonoBehaviour {
         plantList.Clear();
         isInit=true;
         indexTail = indexHead = 0;
-        plantState=PlantState.READY;
+        logic.setHeight(0f);
+      
+        transform.position = initPosition;      // 위치도 초기화
+        gameOnScreen.Show();
+        CreatePlant();
     }
 
 
@@ -49,8 +50,8 @@ public class PlantSpawnManager : MonoBehaviour {
 
         if (logic==null) return;
 
-        if (logic.state==Logic.GameState.GAMEOVER||logic.state==Logic.GameState.CLEAR) {
-            plantState=PlantState.READY;
+        if (logic.state==Logic.GameState.READY) {
+            ReadyPlant();
         }
         if (logic.state!=Logic.GameState.PLAY) return;
 
@@ -84,9 +85,12 @@ public class PlantSpawnManager : MonoBehaviour {
         {
             plantList[i].GetComponent<SpriteRenderer>().sortingOrder = 20-(i-indexTail);
         }
-        plantState = PlantState.GROW;
 
-        ui.DisplayFloatingText("New Bud Sprouts!");
+        // 테스트용
+        if (indexHead > 20)
+            logic.state = Logic.GameState.GAMEOVER;
+
+        ui.DisplayFloatingText("New Bud!");
     }
 
     /*

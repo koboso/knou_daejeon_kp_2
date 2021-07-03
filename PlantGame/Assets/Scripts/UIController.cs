@@ -6,6 +6,9 @@ using TMPro;
 public class UIController : MonoBehaviour {
     private Logic logic = null;
 
+    public GameOverScreen GameOverScreen;
+    
+
     [SerializeField] private GameObject floatingTextPrefab;
     private GameObject ftparent = null;
 
@@ -28,17 +31,24 @@ public class UIController : MonoBehaviour {
     void Update() {
         switch (logic.state){
             case Logic.GameState.READY:
+                if(GameOverScreen)
+                {
+                    GameOverScreen.Hide();
+                }
                 // 준비 상태의 UI처리
+//                DisplayScoreLine();
                 break;
             case Logic.GameState.PLAY:
+                
                 // 플레이 상태의 UI 처리
-                DisplayScoreLine();
+                //                DisplayScoreLine();
                 break;
             case Logic.GameState.PAUSE:
                 // 멈춤 상태의 UI처리
                 break;
             case Logic.GameState.GAMEOVER:
                 // 게임 오버 상태의 UI처리
+                GameOver();
                 break;
 
             case Logic.GameState.CLEAR:
@@ -48,13 +58,14 @@ public class UIController : MonoBehaviour {
         
     }
 
-    private void DisplayScoreLine()
+    public void DisplayScoreLine()
     {
      //    Debug.Log("Tree Height: " + logic.treeHeight + ", Bees Killed: " + logic.beesKilled  + "\nGrowth Speed: " + logic.growthSpeed + " m/s");
         if (scoreLine)
             scoreLine.text =
-                "Tree Height: " + string.Format("{0:N1}", logic.treeHeight) + ", Bees Killed: " + logic.beesKilled
+                "Tree Height: " + string.Format("{0:N1}", logic.treeHeight) + "m, Bees Killed: " + logic.beesKilled
                 + "\nGrowth Speed: " + logic.growthSpeed + " m/s";
+
     }
 
     public void DisplayFloatingText(string text)
@@ -64,6 +75,11 @@ public class UIController : MonoBehaviour {
             GameObject prefab = Instantiate(floatingTextPrefab, ftparent.transform);
             prefab.GetComponentInChildren<TextMeshProUGUI>().text = text;
         }
+    }
+
+    private void GameOver()
+    {
+        GameOverScreen.Setup(logic.treeHeight);
     }
 
 }

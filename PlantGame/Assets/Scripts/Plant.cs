@@ -13,6 +13,12 @@ public class Plant : MonoBehaviour{
         LGROW,
         GROWN
     };
+
+    private enum GrowthType
+    {
+        NORMAL = 0,
+        CLICK = 1
+    };
     private PlantState state = PlantState.START;
 
     private Logic logic = null;
@@ -53,9 +59,9 @@ public class Plant : MonoBehaviour{
             Debug.Log("좌우반전!");
         }
         initScale = new Vector3(10f, 10f, 1.0f);  // 안큰거
-        endScale = new Vector3(40f, 40f, 1.0f);   // 다 큰거
+        endScale = new Vector3(50f, 50f, 1.0f);   // 다 큰거
 
-        extraGrowthScale = new Vector3(20f, 0.0f, 0f); // 옆으로 더 클 양
+        extraGrowthScale = new Vector3(25f, 0.0f, 0f); // 옆으로 더 클 양
     }
 
     // Update is called once per frame
@@ -77,7 +83,10 @@ public class Plant : MonoBehaviour{
                 // 준비 상태의 UI처리
                 break;
             case Logic.GameState.PLAY:
-                GrowPlant();
+                if (Input.GetMouseButtonUp(0))
+                    GrowPlant(GrowthType.CLICK);
+                else
+                    GrowPlant(GrowthType.NORMAL);
 
                 // 플레이 상태의 UI 처리
                 break;
@@ -94,7 +103,7 @@ public class Plant : MonoBehaviour{
     }
 
     //식물이 자라도록 해주는 함수.
-    public bool GrowPlant(){
+    private bool GrowPlant(GrowthType gt){
         switch(state)
         {
             case PlantState.GROWN:
@@ -102,7 +111,12 @@ public class Plant : MonoBehaviour{
 
             case PlantState.START:
             case PlantState.HGROW:  // 부피성장단계
-                plantHeight += logic.growthSpeed;
+                if (gt == GrowthType.NORMAL)
+                    plantHeight += logic.growthSpeed;
+                else
+                {   // GrowthType.CLICK
+                    plantHeight += logic.clickGrowthSpeed;
+                }
 
                 if (plantHeight >= 1.0f)
                 {
@@ -129,9 +143,6 @@ public class Plant : MonoBehaviour{
                 transform.localScale = endScale + extraGrowthScale * extraGrowth;
                 break;
         }
-
-        // initScale + deltaScale * plantHeight
-        //    + extraGrowthScale * extraGrowth;
 
         return false;
     }
