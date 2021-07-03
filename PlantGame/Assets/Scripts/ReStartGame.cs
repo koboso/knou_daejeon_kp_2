@@ -5,10 +5,11 @@ using UnityEngine;
 public class ReStartGame : MonoBehaviour
 {
 
+    // 리스타트 버튼 클릭시 실행되는 코드.
     public void NewGame()
     {
         GameObject.Find("GameManager").GetComponent<Logic>().state = Logic.GameState.READY;
-        GameObject.Find("GameOverScreen").GetComponent<GameOverScreen>().Hide();
+        transform.parent.GetComponent<GameOverScreen>().Hide();
     }
 
 }

@@ -19,8 +19,8 @@ public class PlantSpawnManager : MonoBehaviour {
 
         plantList=new List<GameObject>();
 
-        logic=GameObject.Find("GameManager").GetComponent<Logic>();
-        ui = GameObject.Find("UICanvas").GetComponent<UIController>();
+        logic=GameObject.Find("/GameManager").GetComponent<Logic>();
+        ui = transform.parent.GetComponent<UIController>();
 
         initPosition = transform.position;
 

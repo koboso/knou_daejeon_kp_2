@@ -47,13 +47,13 @@ public class Plant : MonoBehaviour{
     }
 
     void Start(){
-        logic = GameObject.Find("GameManager").GetComponent<Logic>();
-        psm = GameObject.Find("PlantTree").GetComponent<PlantSpawnManager>();
+        logic = GameObject.Find("/GameManager").GetComponent<Logic>();
+        psm = transform.parent.GetComponent<PlantSpawnManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         if (Random.Range(0, 2) == 1)
         {
-            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            GetComponent<SpriteRenderer>().flipX = true;
             Debug.Log("좌우반전!");
         }
         initScale = new Vector3(10f, 10f, 1.0f);  // 안큰거

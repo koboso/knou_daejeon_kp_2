@@ -10,27 +10,20 @@ public class UIController : MonoBehaviour {
     private GameOverScreen gameOverScreen;
     
     [SerializeField] private GameObject floatingTextPrefab;
-    private GameObject ftparent = null;
+    private Transform floatTextTransform = null;
 
     [SerializeField] private TextMeshProUGUI scoreLine = null;
 
     void Start() {
         // 로직 정보를 가져오기위함.
-        logic = GameObject.Find("GameManager").GetComponent<Logic>();
-        ftparent = GameObject.Find("FloatingTextParent");
-        scoreLine = GameObject.Find("ScoreLine").GetComponentInChildren<TextMeshProUGUI>();
+        logic = GameObject.Find("/GameManager").GetComponent<Logic>();
+        floatTextTransform = transform.Find("FloatingTextParent");
 
-        gameOnScreen = GameObject.Find("GameOnScreen").GetComponent<GameOnScreen>();
-        gameOverScreen = GameObject.Find("GameOverScreen").GetComponent<GameOverScreen>();
+        scoreLine = transform.Find("ScoreLine").GetComponentInChildren<TextMeshProUGUI>();
+
+        gameOnScreen = transform.Find("GameOnScreen").GetComponent<GameOnScreen>();
+        gameOverScreen = transform.Find("GameOverScreen").GetComponent<GameOverScreen>();
         gameOverScreen.Hide();
-
-        if (scoreLine)
-        {
-            Debug.Log("scoreLine 찾음");
-        } else
-        {
-            Debug.Log("scoreLine 못찾음");
-        }
     }
 
     void Update() {
@@ -38,9 +31,10 @@ public class UIController : MonoBehaviour {
             case Logic.GameState.READY:
                 // 준비 상태의 UI처리
                 GameReady();
+                DisplayReadyLine();
                 break;
             case Logic.GameState.PLAY:
-               
+                DisplayScoreLine();
                 break;
             case Logic.GameState.PAUSE:
                 // 멈춤 상태의 UI처리
@@ -57,28 +51,33 @@ public class UIController : MonoBehaviour {
         
     }
 
-    public void DisplayScoreLine()
+    private void DisplayScoreLine()
     {
-     //    Debug.Log("Tree Height: " + logic.treeHeight + ", Bees Killed: " + logic.beesKilled  + "\nGrowth Speed: " + logic.growthSpeed + " m/s");
         if (scoreLine)
             scoreLine.text =
                 "Tree Height: " + string.Format("{0:N1}", logic.treeHeight) + "m, Bees Killed: " + logic.beesKilled
                 + "\nGrowth Speed: " + logic.growthSpeed + " m/s";
+    }
 
+    private void DisplayReadyLine()
+    {
+        if(scoreLine)
+            scoreLine.text = "Tree Height: NEW BUD, Bees Killed: " + logic.beesKilled
+                + "\nGrowth Speed: " + logic.growthSpeed + " m/s";
     }
 
     public void DisplayFloatingText(string text)
     {
         if (floatingTextPrefab)
         {
-            GameObject prefab = Instantiate(floatingTextPrefab, ftparent.transform);
+            GameObject prefab = Instantiate(floatingTextPrefab, floatTextTransform);
             prefab.GetComponentInChildren<TextMeshProUGUI>().text = text;
         }
     }
 
     private void GameOver()
     {
-        if(gameOverScreen)
+        if (gameOverScreen)
         {
             gameOverScreen.Setup(logic.treeHeight);
         }

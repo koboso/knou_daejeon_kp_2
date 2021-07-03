@@ -8,8 +8,6 @@ public class Logic : MonoBehaviour{
     public enum GameState {READY = 0, PLAY, CLEAR, GAMEOVER, PAUSE };
     public GameState state = GameState.PLAY;
 
-    public UIController ui = null;
-
     public float growthSpeed = 0.01f;       // 프레임당 성장 속도
     public float clickGrowthSpeed = 0.2f;   // 클릭시 성장 속도
     public float treeHeight = 0f;
@@ -17,7 +15,6 @@ public class Logic : MonoBehaviour{
 
 
     void Start(){
-//        ui = gameObject.GetComponent<UIController>();
     }
 
     // Update is called once per frame
@@ -46,9 +43,7 @@ public class Logic : MonoBehaviour{
 
     public void setHeight(float height)
     {
-    //    Debug.Log("setHeight = " + height);
         this.treeHeight = height;
-        if (ui) ui.DisplayScoreLine();
     }
 
     // 생성한 객체 모두 지워주는 함수.

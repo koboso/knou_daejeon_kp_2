@@ -4,30 +4,10 @@ using UnityEngine;
 
 public class GameStart : MonoBehaviour
 {
-
-    private Logic logic;
-    private GameOnScreen GameOnScreen;
-
+    // 스타드 'READY!' 화면에서 버튼 클릭하면 실행되는 코드
     public void StartGame()
     {
-        if (GameOnScreen)
-        {
-            GameOnScreen.Hide();
-        }
-        logic.state = Logic.GameState.PLAY;
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        logic = GameObject.Find("GameManager").GetComponent<Logic>();
-        GameOnScreen = GameObject.Find("GameOnScreen").GetComponent<GameOnScreen>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GameObject.Find("GameManager").GetComponent<Logic>().state = Logic.GameState.PLAY;
+        transform.parent.GetComponent<GameOnScreen>().Hide();
     }
 }
