@@ -17,6 +17,6 @@ public class MoveBg : MonoBehaviour
     void FixedUpdate()
     {
         float NewPosition = Mathf.Repeat(Time.time * speed, clamppos);
-        transform.position = StartPosition + Vector3.up * NewPosition;
+       // transform.position = StartPosition + Vector3.up * NewPosition;
     }
 }

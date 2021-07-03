@@ -20,11 +20,15 @@ public class Plant : MonoBehaviour{
 
     public float plantHeight = 0f;          // 현재 키
     public float extraGrowth = 0f;          // 추가로 옆으로 더 크는 양
+    public Vector3 Height
+    {
+        get { return plantHeight * endScale;  }
+    }
 
     // 시작 스케일에서 키성장 종료 스케일까지
     private Vector3 initScale;
     private Vector3 endScale;
-
+    
     // 다 컸을때 옆으로 더 크는 양
     private Vector3 extraGrowthScale;
 
@@ -48,10 +52,10 @@ public class Plant : MonoBehaviour{
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
             Debug.Log("좌우반전!");
         }
-        initScale = new Vector3(0.2f, 0.2f, 1.0f);  // 안큰거
-        endScale = new Vector3(1.0f, 1.0f, 1.0f);   // 다 큰거
+        initScale = new Vector3(10f, 10f, 1.0f);  // 안큰거
+        endScale = new Vector3(40f, 40f, 1.0f);   // 다 큰거
 
-        extraGrowthScale = new Vector3(0.5f, 0.0f, 0f); // 옆으로 더 클 양
+        extraGrowthScale = new Vector3(20f, 0.0f, 0f); // 옆으로 더 클 양
     }
 
     // Update is called once per frame

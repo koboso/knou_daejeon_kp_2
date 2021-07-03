@@ -26,9 +26,10 @@ public class PlantSpawnManager : MonoBehaviour {
         plantList=new List<GameObject>();
         logic=GameObject.Find("GameManager").GetComponent<Logic>();
         ui = GameObject.Find("UICanvas").GetComponent<UIController>();
+        initPosition = transform.position;
 
         CreatePlant();
-        initPosition = transform.position;
+
     }
 
     private void ClearPlant() {
@@ -55,7 +56,7 @@ public class PlantSpawnManager : MonoBehaviour {
 
         // 나무 전체가 아래로 이동
         float height = indexHead - 1 + topPlant.plantHeight;
-        transform.position = initPosition + new Vector3(0f, -height, 0f);
+        transform.position = initPosition + new Vector3(0f, -height * 50, 0f);
 
         logic.setHeight(height);
 
@@ -70,11 +71,11 @@ public class PlantSpawnManager : MonoBehaviour {
 //        p.GetComponent<SpriteRenderer>().sortingOrder = -indexHead;
 
         p.name = "Plant-" + indexHead;
-        p.transform.position += new Vector3(0.0f, (float)indexHead, 0.0f);
+        p.transform.position += new Vector3(0.0f, (float)indexHead*50, 0.0f);
 
         indexHead++;
 
-        if (plantList.Count > 10)    // 플랜트가 열개 넘으면 맨 오래된 플랜트를 지움
+        if (plantList.Count > 15)    // 플랜트가 열 다섯개 넘으면 맨 오래된 플랜트를 지움
         {
             Destroy(plantList[indexTail]);
             indexTail++;
