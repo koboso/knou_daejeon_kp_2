@@ -13,7 +13,7 @@ public class testPlant : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
     //충돌 시 지정 색상으로 변화
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         spriteRenderer.color = color;
 

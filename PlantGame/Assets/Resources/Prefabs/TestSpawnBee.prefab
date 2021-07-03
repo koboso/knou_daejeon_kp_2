@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8205278285641584641}
   - component: {fileID: 4752648750421488084}
   - component: {fileID: -461813067919869819}
-  - component: {fileID: -5975479939623536241}
   - component: {fileID: -8079718709747334790}
+  - component: {fileID: 4216195714494236131}
   m_Layer: 0
   m_Name: TestSpawnBee
   m_TagString: Untagged
@@ -119,7 +119,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 1
   spawnpos: {x: 0, y: 0, z: 0}
---- !u!50 &-5975479939623536241
+  color: {r: 1, g: 0.6839622, b: 0.6839622, a: 1}
+--- !u!58 &-8079718709747334790
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9011632327195817925}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
+--- !u!50 &4216195714494236131
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -139,20 +156,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!58 &-8079718709747334790
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9011632327195817925}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1
+  m_Constraints: 2
