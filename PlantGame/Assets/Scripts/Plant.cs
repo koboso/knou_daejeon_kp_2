@@ -32,10 +32,7 @@ public class Plant : MonoBehaviour{
     // 다 컸을때 옆으로 더 크는 양
     private Vector3 extraGrowthScale;
 
-    private void Awake()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
+ 
     //충돌 시 지정 색상으로 변화
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -46,8 +43,9 @@ public class Plant : MonoBehaviour{
     void Start(){
         logic = GameObject.Find("GameManager").GetComponent<Logic>();
         psm = GameObject.Find("PlantTree").GetComponent<PlantSpawnManager>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
-        if(Random.Range(0f, 1f) > 0.5f)
+        if (Random.Range(0, 2) == 1)
         {
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
             Debug.Log("좌우반전!");
