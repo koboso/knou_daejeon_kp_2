@@ -32,7 +32,7 @@ public class Logic : MonoBehaviour{
     // 벌 생성되는 시간 - 길수록 늦게 생성됨, 최고 0.5초 단위
     public float BeeSpawnTime
     {
-        get { return 4f - Mathf.Min(3.9f, Random.Range(0, treeHeight) / 5); }
+        get { return 4f - Mathf.Min(3.9f, Random.Range(treeHeight/10, treeHeight) / 10); }
     }
     // 벌 피통
     public int BeeHP
