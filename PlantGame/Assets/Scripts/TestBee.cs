@@ -7,7 +7,7 @@ public class TestBee : MonoBehaviour
     public int hp = 1;
     private float speed = 1f;
     // 처음 생성되는 포지션.
-    public Vector3 spawnpos;
+    private Vector3 initPos;
     //마우스 클릭 시 선택된 오브젝트
     private GameObject target;
     //여왕벌 스폰 시 변경할 색
@@ -17,7 +17,7 @@ public class TestBee : MonoBehaviour
 
     private void Start()
     {
-        spawnpos = this.gameObject.transform.position;//초반 생성좌표
+        initPos = this.gameObject.transform.position;//초반 생성좌표
         speed = Random.Range(0.3f, 1.2f);//벌 속도를 랜덤하게
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -74,7 +74,7 @@ public class TestBee : MonoBehaviour
     //벌 움직이는 함수
     private void Fly()
     {
-        if (spawnpos.x < 0.00)
+        if (initPos.x < 0.00)
         {
             // 왼쪽 에서 벌이 생성된경우. 방향 바꾸고 오른쪽으로 이동
             transform.eulerAngles = new Vector3(0, 180, 0);

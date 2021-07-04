@@ -38,7 +38,7 @@ public class PlantSpawnManager : MonoBehaviour {
         plantList.Clear();
         isInit=true;
         indexTail = indexHead = 0;
-        logic.setHeight(0f);
+        logic.InitScore();
       
         transform.position = initPosition;      // 위치도 초기화
 
@@ -59,7 +59,7 @@ public class PlantSpawnManager : MonoBehaviour {
         float height = indexHead - 1 + topPlant.plantHeight;
         transform.position = initPosition + new Vector3(0f, -height * 50, 0f);
 
-        logic.setHeight(height);
+        logic.treeHeight = height;
 
         isInit = false;
     }

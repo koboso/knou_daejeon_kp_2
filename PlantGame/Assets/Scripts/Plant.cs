@@ -56,8 +56,8 @@ public class Plant : MonoBehaviour{
 
         RandomFlipX(gameObject);
 
-        // 꽃을 피울건지 여부 - 이 부분은 PlantSpawn으로 옮겨야 하지 않을까?
-        if (Random.Range(0f, logic.treeHeight) > 2)
+        // 꽃을 피울건지 여부 - 확률은 Logic.cs 에 있음.
+        if (logic.BloomFlower)
         {
             flowerPrefab = Resources.Load("Prefabs/FlowerPrefab") as GameObject;
         }
@@ -125,7 +125,6 @@ public class Plant : MonoBehaviour{
                 if (plantHeight >= 1.0f)
                 {
                     plantHeight = 1.0f;
-                    Debug.Log("다 자랐습니다.");
                     state = PlantState.LGROW;
 
                     // 위로 다 컸으면, 새 플랜트를 만든다.
@@ -142,7 +141,6 @@ public class Plant : MonoBehaviour{
                 {
                     extraGrowth = 1f;
                     state = PlantState.GROWN;
-                    Debug.Log("옆으로 다 자랐습니다.");
                 }
                 transform.localScale = endScale + extraGrowthScale * extraGrowth;
 
@@ -162,6 +160,7 @@ public class Plant : MonoBehaviour{
             g.GetComponent<SpriteRenderer>().flipX = true;
     }
 
+    // 잎에서 확률적으로 꽃이 핌. 위치는 랜덤하게 좌우로 변경.
     void FlowerBloom()
     {
         GameObject p = Instantiate(flowerPrefab, transform);
