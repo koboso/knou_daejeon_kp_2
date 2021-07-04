@@ -38,6 +38,9 @@ public class Plant : MonoBehaviour{
     // 다 컸을때 옆으로 더 크는 양
     private Vector3 extraGrowthScale;
 
+    // 꽃 관련 변수
+    private GameObject flowerPrefab = null;
+    private bool isFlowerBloom = false;
  
     //충돌 시 지정 색상으로 변화
     private void OnCollisionEnter2D(Collision2D collision)
@@ -51,11 +54,14 @@ public class Plant : MonoBehaviour{
         psm = transform.parent.GetComponent<PlantSpawnManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        if (Random.Range(0, 2) == 1)
+        RandomFlipX(gameObject);
+
+        // 꽃을 피울건지 여부 - 이 부분은 PlantSpawn으로 옮겨야 하지 않을까?
+        if (Random.Range(0f, logic.treeHeight) > 2)
         {
-            GetComponent<SpriteRenderer>().flipX = true;
-            Debug.Log("좌우반전!");
+            flowerPrefab = Resources.Load("Prefabs/FlowerPrefab") as GameObject;
         }
+
         initScale = new Vector3(10f, 10f, 1.0f);  // 안큰거
         endScale = new Vector3(50f, 50f, 1.0f);   // 다 큰거
 
@@ -139,10 +145,30 @@ public class Plant : MonoBehaviour{
                     Debug.Log("옆으로 다 자랐습니다.");
                 }
                 transform.localScale = endScale + extraGrowthScale * extraGrowth;
+
+                // 꽃 프리팹이 설정되고 아직 피지 않았으면 꽃을 피운다.
+                if (flowerPrefab && !isFlowerBloom)
+                    FlowerBloom();
+
                 break;
         }
 
         return false;
+    }
+
+    void RandomFlipX(GameObject g)
+    {
+        if (Random.Range(0, 2) == 1)
+            g.GetComponent<SpriteRenderer>().flipX = true;
+    }
+
+    void FlowerBloom()
+    {
+        GameObject p = Instantiate(flowerPrefab, transform);
+
+        RandomFlipX(p);
+        p.transform.position += new Vector3(Random.Range(-40f, 40f)+ Random.Range(-40f, 40f), 0, 0);
+        isFlowerBloom = true;
     }
 
 }
