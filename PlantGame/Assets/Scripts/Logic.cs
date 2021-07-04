@@ -25,10 +25,15 @@ public class Logic : MonoBehaviour{
     public bool QueenBee
     {   get { return Random.Range(0, 31) == 1;  }}
 
-    // 벌 속도 계산
+    // 벌 날아가는 속도 - 숫자가 클 수록 빠름
     public float BeeSpeed
     {   get { return Random.Range(0.3f, 1.2f);  }}
 
+    // 벌 생성되는 시간 - 길수록 늦게 생성됨, 최고 0.5초 단위
+    public float BeeSpawnTime
+    {
+        get { return 4f - Mathf.Min(3.5f, Random.Range(0, treeHeight) / 10); }
+    }
     // 벌 피통
     public int BeeHP
     {

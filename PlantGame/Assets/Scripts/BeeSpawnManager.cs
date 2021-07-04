@@ -6,7 +6,7 @@ public class BeeSpawnManager : MonoBehaviour
 {
     private Logic logic = null;
 
-    public float spwanTime = 3f;
+    public float spawnTime;
     public float curTime;
     public Transform[] spawnPoints;
     public GameObject bee;
@@ -14,6 +14,7 @@ public class BeeSpawnManager : MonoBehaviour
     private void Start()
     {
         logic = GameObject.Find("/GameManager").GetComponent<Logic>();
+        spawnTime = logic.BeeSpawnTime;
     }
 
     private void Update()
@@ -24,22 +25,22 @@ public class BeeSpawnManager : MonoBehaviour
                 return;
         }
 
-        if (curTime >= spwanTime)
+        if (0 >= spawnTime)
         {
             //벌 스폰포인트 인덱스가 될 랜덤한 수 
             int x = Random.Range(0,spawnPoints.Length);
             //랜덤 인덱스에 해당하는 스폰포인트에서 벌 생성
             SpawnBee(x);
         }
-        curTime += Time.deltaTime;
+        spawnTime -= Time.deltaTime;
     }
 
     //벌 생성하는 함수
     public void SpawnBee(int ranNum)
     {
         //스폰타이머 리셋
-        Debug.Log("SpawnBee - " + ranNum);
-        curTime = 0;
+        spawnTime = logic.BeeSpawnTime;
+        Debug.Log("다음 벌은 " + spawnTime + "초");
         //랜덤 인덱스에 해당하는 스폰포인트에서 벌 생성
         Instantiate(bee,spawnPoints[ranNum]);
     }

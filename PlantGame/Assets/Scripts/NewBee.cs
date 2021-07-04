@@ -124,7 +124,7 @@ public class NewBee : MonoBehaviour
         // 화면 범위를 넘어가면 벌을 없앰.
         if (Mathf.Abs(transform.localPosition.x) > 0.17f)
         {
-            Debug.Log("벌 이탈 x=" + transform.localPosition);
+ //           Debug.Log("벌 이탈 x=" + transform.localPosition);
             Destroy(gameObject);
         }
     }

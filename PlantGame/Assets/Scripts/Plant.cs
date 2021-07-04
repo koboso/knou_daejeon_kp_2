@@ -42,11 +42,15 @@ public class Plant : MonoBehaviour{
     private GameObject flowerPrefab = null;
     private bool isFlowerBloom = false;
  
-    //충돌 시 지정 색상으로 변화
-    private void OnCollisionEnter2D(Collision2D collision)
+    // 벌이랑 충돌. 충돌 시 지정 색상으로 변화
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        spriteRenderer.color = color;
-
+        Debug.Log("충돌! tag=" + other.tag);
+        if (other.tag == "Enemy")
+        {
+            spriteRenderer.color = color;
+            logic.state = Logic.GameState.GAMEOVER;
+        }
     }
 
     void Start(){

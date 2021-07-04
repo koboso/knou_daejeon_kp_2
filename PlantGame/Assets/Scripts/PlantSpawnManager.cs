@@ -85,10 +85,6 @@ public class PlantSpawnManager : MonoBehaviour {
             plantList[i].GetComponent<SpriteRenderer>().sortingOrder = 20-(i-indexTail);
         }
 
-        // 테스트용
-        if (indexHead > 20)
-            logic.state = Logic.GameState.GAMEOVER;
-
         ui.DisplayFloatingText("New Bud!");
     }
 
