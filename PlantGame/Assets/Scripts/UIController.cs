@@ -79,7 +79,7 @@ public class UIController : MonoBehaviour {
     {
         if (gameOverScreen)
         {
-            gameOverScreen.Setup(logic.treeHeight);
+            gameOverScreen.Setup(logic.treeHeight, logic.beesKilled);
         }
     }
 
