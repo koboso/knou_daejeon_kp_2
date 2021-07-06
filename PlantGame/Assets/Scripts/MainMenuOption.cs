@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Start 화면의 메인메뉴 옵션
 public class MainMenuOption : MonoBehaviour
 {
     public void playgame()
@@ -10,15 +11,14 @@ public class MainMenuOption : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void Quit()
     {
-        
+        Debug.Log("애플리케이션을 종료합니다.");
+        Application.Quit();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GoMenu()
     {
-        
+        SceneManager.LoadScene(1);
     }
 }

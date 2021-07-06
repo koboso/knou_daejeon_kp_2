@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 // 게임이 종료 되었을 때 사용하는 화면
 public class GameOverScreen : MonoBehaviour
 {
@@ -15,10 +16,9 @@ public class GameOverScreen : MonoBehaviour
         treeHeight.text = "Tree is grown " + string.Format("{0:N2}", score) + " m";
         beesKilled.text = "\nBees Killed: " + bee;
     }
-    
+
     public void Hide()
     {
         gameObject.SetActive(false);
     }
-
 }

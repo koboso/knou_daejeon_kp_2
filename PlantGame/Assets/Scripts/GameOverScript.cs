@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 게임 종료
 public class GameOverScript : MonoBehaviour
 {
     public void Quit()

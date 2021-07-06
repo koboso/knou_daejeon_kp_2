@@ -8,7 +8,7 @@ public class UIController : MonoBehaviour {
 
     private GameOnScreen gameOnScreen;
     private GameOverScreen gameOverScreen;
-    
+
     [SerializeField] private GameObject floatingTextPrefab;
     private Transform floatTextTransform = null;
 
