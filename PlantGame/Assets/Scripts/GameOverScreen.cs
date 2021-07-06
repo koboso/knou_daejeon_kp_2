@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// 게임이 종료 되었을 때 사용하는 화면
 public class GameOverScreen : MonoBehaviour
 {
     public Text treeHeight;

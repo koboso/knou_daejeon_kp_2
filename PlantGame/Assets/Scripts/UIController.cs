@@ -55,15 +55,13 @@ public class UIController : MonoBehaviour {
     {
         if (scoreLine)
             scoreLine.text =
-                "Tree Height: " + string.Format("{0:N1}", logic.treeHeight) + "m, Bees Killed: " + logic.beesKilled
-                + "\nGrowth Speed: " + logic.growthSpeed + " m/s";
+                "Tree Height: " + string.Format("{0:N1}", logic.treeHeight) + "m";
     }
 
     private void DisplayReadyLine()
     {
         if(scoreLine)
-            scoreLine.text = "Tree Height: NEW BUD, Bees Killed: " + logic.beesKilled
-                + "\nGrowth Speed: " + logic.growthSpeed + " m/s";
+            scoreLine.text = "Tree Height: 0.0 m";
     }
 
     public void DisplayFloatingText(string text)
