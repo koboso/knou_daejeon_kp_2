@@ -12,6 +12,8 @@ public class Logic : MonoBehaviour{
     public float clickGrowthSpeed = 0.2f;   // 클릭시 성장 속도
     public float treeHeight = 0f;
     public int beesKilled = 0;
+    public AudioSource beekilledSound;
+    public AudioSource queenSound;
 
     /**
      * 게임확률 계산공식
@@ -64,8 +66,16 @@ public class Logic : MonoBehaviour{
 
     }
 
+    public void QueenSound()
+    {
+        queenSound.Play(); //여왕벌 나오면 Audio Play
+
+    }
+
     public void BeeKilled()
     {
+        beekilledSound.Play(); //벌 죽을때 Audio Play
+
         this.beesKilled++;
     }
 

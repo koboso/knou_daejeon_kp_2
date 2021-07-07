@@ -41,6 +41,7 @@ public class NewBee : MonoBehaviour
 
             if (logic.QueenBee)//30분의 1 확률로 사이즈, 피통 크고 색 다른 여왕벌 생성
             {
+                logic.QueenSound();
                 Debug.Log("여왕벌");
                 gameObject.name = "QueenBee";
                 transform.localScale = new Vector3(0.008f, 0.008f, 0.008f);
