@@ -1004,9 +1004,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1025510907}
   - component: {fileID: 1025510908}
+  - component: {fileID: 1025510909}
   m_Layer: 0
   m_Name: sky
-  m_TagString: Untagged
+  m_TagString: ingame
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1075,6 +1076,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1025510909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025510906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68d9d2f2dacba2c4990ffc5f2bd5496b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
 --- !u!1 &1038936267
 GameObject:
   m_ObjectHideFlags: 0
@@ -1757,6 +1771,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SpawnField
+      objectReference: {fileID: 0}
+    - target: {fileID: 6450430243532562797, guid: 4599d07d8ed384249a59168d07b4af1d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6450430243532562799, guid: 4599d07d8ed384249a59168d07b4af1d,
         type: 3}
