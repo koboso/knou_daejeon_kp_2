@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4752648750421488084}
   - component: {fileID: -8079718709747334790}
   - component: {fileID: 4216195714494236131}
-  - component: {fileID: 9166702303683019442}
+  - component: {fileID: 3543493791879130724}
   m_Layer: 0
   m_Name: SpawnBee
   m_TagString: Enemy
@@ -142,7 +142,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
---- !u!114 &9166702303683019442
+--- !u!114 &3543493791879130724
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,4 +155,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 1
-  color: {r: 1, g: 0.9098039, b: 0.67058825, a: 1}
+  color: {r: 0, g: 0, b: 0, a: 0}

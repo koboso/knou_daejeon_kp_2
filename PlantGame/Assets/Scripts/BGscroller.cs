@@ -18,7 +18,10 @@ public class BGscroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        offset += Time.deltaTime * speed;
-        render.material.mainTextureOffset = new Vector2(offset, 0);
+        if (GameObject.Find("GameManager").GetComponent<Logic>().state == Logic.GameState.PLAY)
+        {
+            offset += Time.deltaTime * speed;
+            render.material.mainTextureOffset = new Vector2(offset, 0);
+        }
     }
 }
