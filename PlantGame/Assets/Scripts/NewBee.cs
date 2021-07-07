@@ -80,21 +80,27 @@ public class NewBee : MonoBehaviour
     {
         if (hp <= 0)//피 0 이하 되면 제거
         {
-            if (logic) logic.BeeKilled();
-
+            if(this.name == "QueenBee")
+            {
+                logic.FeverUp();
+                logic.FeverUp();
+            }
+            logic.BeeKilled();
+            logic.FeverUp();
             Destroy(gameObject);
         }
         else
         {
-            Fly();
-            if (Input.GetMouseButtonDown(0))//마우스 클릭 시
-            {
-                CastRay();//마우스 클릭 좌표에 있는 오브젝트 가져와서
-                if (target == this.gameObject)//Bee라면
-                {
-                    TakeDamage(1);//피 1 감산
-                }
-            }
+             Fly();
+             if (Input.GetMouseButtonDown(0))//마우스 클릭 시
+             {
+                  CastRay();//마우스 클릭 좌표에 있는 오브젝트 가져와서
+                  if (target == this.gameObject)//Bee라면
+                  {
+                      TakeDamage(1);//피 1 감산
+                  }
+             }
+            
         }
     }
 

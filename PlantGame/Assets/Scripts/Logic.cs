@@ -12,6 +12,7 @@ public class Logic : MonoBehaviour{
     public float clickGrowthSpeed = 0.2f;   // 클릭시 성장 속도
     public float treeHeight = 0f;
     public int beesKilled = 0;
+    public int feverpoint = 0;
     public AudioSource beekilledSound;
     public AudioSource queenSound;
 
@@ -77,6 +78,10 @@ public class Logic : MonoBehaviour{
         beekilledSound.Play(); //벌 죽을때 Audio Play
 
         this.beesKilled++;
+    }
+    public void FeverUp()
+    {
+        this.feverpoint++;
     }
 
     public void setHeight(float height)

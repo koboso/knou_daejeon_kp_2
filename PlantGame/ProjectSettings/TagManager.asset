@@ -6,7 +6,7 @@ TagManager:
   tags:
   - PlantTree
   - Enemy
-  - mountain
+  - ingame
   layers:
   - Default
   - TransparentFX

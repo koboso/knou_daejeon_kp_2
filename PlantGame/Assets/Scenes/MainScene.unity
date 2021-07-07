@@ -2114,6 +2114,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CLOUD
       objectReference: {fileID: 0}
+    - target: {fileID: 4505966088490047886, guid: dc9d93ed0dab9c5438da040690984b87,
+        type: 3}
+      propertyPath: m_TagString
+      value: ingame
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc9d93ed0dab9c5438da040690984b87, type: 3}
 --- !u!4 &1672280866 stripped
