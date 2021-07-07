@@ -70,6 +70,7 @@ public class BGcolorchanger : MonoBehaviour
             else if (GameObject.Find("GameManager").GetComponent<Logic>().state == Logic.GameState.READY)
             {
                 spriteRenderer.color = Color.HSVToRGB(1, 0, 1);
+                offset = 1f;
             }
         }
     }
