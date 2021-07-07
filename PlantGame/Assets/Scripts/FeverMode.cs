@@ -9,10 +9,12 @@ public class FeverMode : MonoBehaviour
     [SerializeField]
     private Slider feverbar;
 
-    private float fevertime = 5f;
+    private bool isInit = true;
+
+    public float fevertime = 5f;
 
     private int maxFever = 10;
-    private int curFever = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,46 +22,68 @@ public class FeverMode : MonoBehaviour
         logic = GameObject.Find("/GameManager").GetComponent<Logic>();
 
         feverbar.maxValue = maxFever;
-        feverbar.value = curFever;
+        HandleFever();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameObject.Find("GameManager").GetComponent<Logic>().state == Logic.GameState.PLAY)
+        switch (logic.state)
         {
-            //맥스포인트 전까지 벌 죽을 때마다 올라가는 피버포인트로 포인트 증가
-            if (curFever < maxFever)
-            {
-                curFever = logic.feverpoint;
-            }
-            else
-            {
-                //맥스포인트 되면 피버타임 타이머 시작
-                fevertime -= Time.deltaTime;
-                Debug.Log("피버타임");
-
-                //피버타임 끝나면 피버포인트 초기화
-                if (fevertime < 0)
-                {
-                    Debug.Log("피버타임 끝");
-                    logic.feverpoint = 0;
-                    curFever = 0;
-                    fevertime = 5f;
-                }
-            }
-            HandleFever();
+            case Logic.GameState.READY:
+                if (isInit)
+                    InitFever();
+                break;
+            case Logic.GameState.PLAY:
+                FeverUpdate();
+                break;
+            case Logic.GameState.FEVER:
+                FeverTime();
+                break;
+            case Logic.GameState.PAUSE:
+                break;
+            case Logic.GameState.GAMEOVER:
+                isInit = true;
+                break;
+            case Logic.GameState.CLEAR:
+                break;
         }
-        else if(GameObject.Find("GameManager").GetComponent<Logic>().state == Logic.GameState.READY)
+
+    }
+
+    private void InitFever()
+    {
+        logic.feverpoint = 0;
+
+        fevertime = 5f;
+        HandleFever();
+
+        isInit = false;
+    }
+
+    // 피버 모드에 업데이트 하는 로직
+    private void FeverUpdate()
+    {
+        if (logic.feverpoint >= maxFever)
+            logic.FeverTime();
+
+        HandleFever();
+    }
+
+    private void FeverTime()
+    {
+        fevertime -= Time.deltaTime;
+
+        if (fevertime < 0)
         {
-            logic.feverpoint = 0;
-            curFever = 0;
-            fevertime = 5f;
-            HandleFever();
+            Debug.Log("피버타임 끝");
+            InitFever();
+            logic.FeverEnd();
         }
     }
+
     private void HandleFever()
     {
-        feverbar.value = curFever;
+        feverbar.value = logic.feverpoint;
     }
 }

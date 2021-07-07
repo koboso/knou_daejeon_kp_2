@@ -53,7 +53,8 @@ public class PlantSpawnManager : MonoBehaviour {
         if (logic.state==Logic.GameState.READY) {
             ReadyPlant();
         }
-        if (logic.state!=Logic.GameState.PLAY) return;
+        if (logic.state!=Logic.GameState.PLAY && logic.state != Logic.GameState.FEVER)
+            return;
 
         // 나무 전체가 아래로 이동
         float height = indexHead - 1 + topPlant.plantHeight;
@@ -85,7 +86,7 @@ public class PlantSpawnManager : MonoBehaviour {
             plantList[i].GetComponent<SpriteRenderer>().sortingOrder = 20-(i-indexTail);
         }
 
-        ui.DisplayFloatingText("New Bud!");
+//        ui.DisplayFloatingText("New Bud!");
     }
 
 }

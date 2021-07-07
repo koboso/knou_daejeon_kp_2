@@ -66,6 +66,9 @@ public class NewBee : MonoBehaviour
                 case Logic.GameState.PLAY:
                     UpdateBee();
                     break;
+                case Logic.GameState.FEVER:
+                    FeverKill();
+                    break;
                 case Logic.GameState.CLEAR:
                     break;
                 case Logic.GameState.PAUSE:
@@ -80,13 +83,12 @@ public class NewBee : MonoBehaviour
     {
         if (hp <= 0)//피 0 이하 되면 제거
         {
-            if(this.name == "QueenBee")
-            {
-                logic.FeverUp();
-                logic.FeverUp();
-            }
+            if (this.name == "QueenBee")
+                logic.FeverUp(3);
+            else
+                logic.FeverUp(1);
+
             logic.BeeKilled();
-            logic.FeverUp();
             Destroy(gameObject);
         }
         else
@@ -102,6 +104,11 @@ public class NewBee : MonoBehaviour
              }
             
         }
+    }
+
+    private void FeverKill()
+    {
+        Destroy(gameObject);
     }
 
     //지정한 정수의 데미지를 hp에서 감산

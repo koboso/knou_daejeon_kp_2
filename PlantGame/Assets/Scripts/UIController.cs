@@ -39,6 +39,9 @@ public class UIController : MonoBehaviour {
             case Logic.GameState.PAUSE:
                 // 멈춤 상태의 UI처리
                 break;
+            case Logic.GameState.FEVER:
+                // 피버 상태의 UI 처리
+                break;
             case Logic.GameState.GAMEOVER:
                 // 게임 오버 상태의 UI처리
                 GameOver();

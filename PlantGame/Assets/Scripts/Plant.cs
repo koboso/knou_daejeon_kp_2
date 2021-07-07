@@ -17,7 +17,8 @@ public class Plant : MonoBehaviour{
     private enum GrowthType
     {
         NORMAL = 0,
-        CLICK = 1
+        FEVER,
+        CLICK
     };
     private PlantState state = PlantState.START;
 
@@ -98,6 +99,9 @@ public class Plant : MonoBehaviour{
 
                 // 플레이 상태의 UI 처리
                 break;
+            case Logic.GameState.FEVER:
+                GrowPlant(GrowthType.FEVER);
+                break;
             case Logic.GameState.PAUSE:
                 // 멈춤 상태의 UI처리
                 break;
@@ -119,11 +123,17 @@ public class Plant : MonoBehaviour{
 
             case PlantState.START:
             case PlantState.HGROW:  // 부피성장단계
-                if (gt == GrowthType.NORMAL)
-                    plantHeight += logic.growthSpeed;
-                else
-                {   // GrowthType.CLICK
-                    plantHeight += logic.clickGrowthSpeed;
+                switch(gt)
+                {
+                    case GrowthType.NORMAL:
+                        plantHeight += logic.growthSpeed;
+                        break;
+                    case GrowthType.CLICK:
+                        plantHeight += logic.clickGrowthSpeed;
+                        break;
+                    case GrowthType.FEVER:
+                        plantHeight += logic.feverGrowthSpeed;
+                        break;
                 }
 
                 if (plantHeight >= 1.0f)

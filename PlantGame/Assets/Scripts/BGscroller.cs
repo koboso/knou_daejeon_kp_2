@@ -6,13 +6,16 @@ public class BGscroller : MonoBehaviour
 {
     private MeshRenderer render;
 
+    Logic logic;
+
     public float speed;
     private float offset;
 
     // Start is called before the first frame update
     void Start()
     {
-        render = GetComponent<MeshRenderer>();    
+        render = GetComponent<MeshRenderer>();
+        logic = GameObject.Find("GameManager").GetComponent<Logic>();
     }
 
     // Update is called once per frame
@@ -20,7 +23,7 @@ public class BGscroller : MonoBehaviour
     {
         if (this.tag == "ingame")
         {
-            if (GameObject.Find("GameManager").GetComponent<Logic>().state == Logic.GameState.PLAY)
+            if (logic.state == Logic.GameState.PLAY || logic.state == Logic.GameState.FEVER)
             {
                 offset += Time.deltaTime * speed;
                 render.material.mainTextureOffset = new Vector2(offset, 0);
