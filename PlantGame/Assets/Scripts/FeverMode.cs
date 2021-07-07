@@ -26,27 +26,37 @@ public class FeverMode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //맥스포인트 전까지 벌 죽을 때마다 올라가는 피버포인트로 포인트 증가
-        if(curFever < maxFever)
+        if (GameObject.Find("GameManager").GetComponent<Logic>().state == Logic.GameState.PLAY)
         {
-            curFever = logic.feverpoint;
-        }
-        else
-        {
-            //맥스포인트 되면 피버타임 타이머 시작
-            fevertime -= Time.deltaTime;
-            Debug.Log("피버타임");
-
-            //피버타임 끝나면 피버포인트 초기화
-            if (fevertime < 0)
+            //맥스포인트 전까지 벌 죽을 때마다 올라가는 피버포인트로 포인트 증가
+            if (curFever < maxFever)
             {
-                Debug.Log("피버타임 끝");
-                logic.feverpoint = 0;
-                curFever = 0;
-                fevertime = 5f;
+                curFever = logic.feverpoint;
             }
+            else
+            {
+                //맥스포인트 되면 피버타임 타이머 시작
+                fevertime -= Time.deltaTime;
+                Debug.Log("피버타임");
+
+                //피버타임 끝나면 피버포인트 초기화
+                if (fevertime < 0)
+                {
+                    Debug.Log("피버타임 끝");
+                    logic.feverpoint = 0;
+                    curFever = 0;
+                    fevertime = 5f;
+                }
+            }
+            HandleFever();
         }
-        HandleFever();
+        else if(GameObject.Find("GameManager").GetComponent<Logic>().state == Logic.GameState.READY)
+        {
+            logic.feverpoint = 0;
+            curFever = 0;
+            fevertime = 5f;
+            HandleFever();
+        }
     }
     private void HandleFever()
     {

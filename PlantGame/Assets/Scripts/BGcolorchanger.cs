@@ -9,7 +9,7 @@ public class BGcolorchanger : MonoBehaviour
     public enum BGState { DAY = 0, NIGHT };
     public BGState state = BGState.DAY;
     private float offset = 1f;
-    private float speed = 0.002f;
+    private float speed = 0.0025f;
     private Logic logic;
 
     // Start is called before the first frame update
@@ -42,7 +42,7 @@ public class BGcolorchanger : MonoBehaviour
         {
             if (GameObject.Find("GameManager").GetComponent<Logic>().state == Logic.GameState.PLAY)
             {
-                if (state == BGState.DAY )
+                if (state == BGState.DAY)
                 {
                     offset -= speed * logic.treeHeight / 1000;
                     spriteRenderer.color = Color.HSVToRGB(1, 0, offset);
@@ -57,20 +57,20 @@ public class BGcolorchanger : MonoBehaviour
                 {
                     offset += speed * logic.treeHeight / 1000;
                     spriteRenderer.color = Color.HSVToRGB(1, 0, offset);
-                    if(offset > 1)
+                    if (offset > 1)
                     {
                         Debug.Log("낮이 됩니다");
                         state = BGState.DAY;
                         offset -= speed * logic.treeHeight / 1000;
                     }
                 }
-                
+
 
             }
-        }
-        else
-        {
-            spriteRenderer.color = Color.HSVToRGB(1, 0, 1);
+            else if (GameObject.Find("GameManager").GetComponent<Logic>().state == Logic.GameState.READY)
+            {
+                spriteRenderer.color = Color.HSVToRGB(1, 0, 1);
+            }
         }
     }
 }
