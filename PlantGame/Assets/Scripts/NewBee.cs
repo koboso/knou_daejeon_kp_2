@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NewBee : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class NewBee : MonoBehaviour
 
     public int hp = 1;
     private float speed = 1f;
+
 
     // 처음 생성되는 포지션.
     private Vector3 initPos;
@@ -35,13 +37,15 @@ public class NewBee : MonoBehaviour
             dir = Vector3.right;
         }
 
-        if (logic) {
+        if (logic)
+        {
             speed = logic.BeeSpeed;//벌 속도를 랜덤하게
             hp = logic.BeeHP;       // 레벨별 HP 다르게 하려면 logic에서 가져오기
 
             if (logic.QueenBee)//30분의 1 확률로 사이즈, 피통 크고 색 다른 여왕벌 생성
             {
                 logic.QueenSound();
+
                 Debug.Log("여왕벌");
                 gameObject.name = "QueenBee";
                 transform.localScale = new Vector3(0.008f, 0.008f, 0.008f);
@@ -115,6 +119,7 @@ public class NewBee : MonoBehaviour
             Debug.Log(hit.collider.name);
             target = hit.collider.gameObject;
         }
+
     }
 
     //벌 움직이는 함수
@@ -125,7 +130,7 @@ public class NewBee : MonoBehaviour
         // 화면 범위를 넘어가면 벌을 없앰.
         if (Mathf.Abs(transform.localPosition.x) > 0.17f)
         {
- //           Debug.Log("벌 이탈 x=" + transform.localPosition);
+            //           Debug.Log("벌 이탈 x=" + transform.localPosition);
             Destroy(gameObject);
         }
     }

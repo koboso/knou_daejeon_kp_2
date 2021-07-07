@@ -7,7 +7,7 @@ public class BeeSpawnManager : MonoBehaviour
     private Logic logic = null;
 
     public float spawnTime;
-    public float curTime;
+    public float curTime; // 
     public Transform[] spawnPoints;
     public GameObject bee;
 
