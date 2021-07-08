@@ -21,4 +21,6 @@ public class MainMenuOption : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+ 
 }

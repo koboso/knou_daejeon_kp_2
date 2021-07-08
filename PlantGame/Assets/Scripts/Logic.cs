@@ -14,8 +14,7 @@ public class Logic : MonoBehaviour{
     public float treeHeight = 0f;
     public int beesKilled = 0;
     public int feverpoint = 0;
-    public AudioSource beekilledSound;
-    public AudioSource queenSound;
+    public AudioSource feverSound;
 
     /**
      * 게임확률 계산공식
@@ -68,16 +67,8 @@ public class Logic : MonoBehaviour{
 
     }
 
-    public void QueenSound()
+     public void BeeKilled()
     {
-        queenSound.Play(); //여왕벌 나오면 Audio Play
-
-    }
-
-    public void BeeKilled()
-    {
-        beekilledSound.Play(); //벌 죽을때 Audio Play
-
         this.beesKilled++;
     }
 
@@ -90,11 +81,13 @@ public class Logic : MonoBehaviour{
     // FeverTime 게임모드 전환
     public void FeverTime()
     {
+        feverSound.Play();
         state = GameState.FEVER;
     }
 
     public void FeverEnd()
     {
+        feverSound.Stop();
         state = GameState.PLAY;
         feverpoint = 0;
     }

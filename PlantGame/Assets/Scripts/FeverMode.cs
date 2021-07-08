@@ -21,7 +21,6 @@ public class FeverMode : MonoBehaviour
         //로직 가져옴
         logic = GameObject.Find("/GameManager").GetComponent<Logic>();
 
-        feverbar.maxValue = maxFever;
         HandleFever();
     }
 
@@ -77,6 +76,7 @@ public class FeverMode : MonoBehaviour
         if (fevertime < 0)
         {
             Debug.Log("피버타임 끝");
+            maxFever += 4;
             InitFever();
             logic.FeverEnd();
         }
@@ -84,6 +84,7 @@ public class FeverMode : MonoBehaviour
 
     private void HandleFever()
     {
+        feverbar.maxValue = maxFever;
         feverbar.value = logic.feverpoint;
     }
 }

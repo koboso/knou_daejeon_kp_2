@@ -6,6 +6,10 @@ public class NewBee : MonoBehaviour
 {
     private Logic logic;
 
+    private AudioSource queenSound;
+    private AudioSource beekilledSound;
+
+
     public int hp = 1;
     private float speed = 1f;
 
@@ -23,7 +27,8 @@ public class NewBee : MonoBehaviour
     private void Start()
     {
         logic = GameObject.Find("/GameManager").GetComponent<Logic>();
-
+        queenSound = GameObject.Find("QueenSound").GetComponent<AudioSource>();
+        beekilledSound = GameObject.Find("BeeKilled").GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         initPos = transform.position;//초반 생성좌표
@@ -41,7 +46,7 @@ public class NewBee : MonoBehaviour
 
             if (logic.QueenBee)//30분의 1 확률로 사이즈, 피통 크고 색 다른 여왕벌 생성
             {
-                logic.QueenSound();
+                queenSound.Play(); //여왕벌 나오면 Audio Play
 
                 Debug.Log("여왕벌");
                 gameObject.name = "QueenBee";
@@ -84,10 +89,14 @@ public class NewBee : MonoBehaviour
         if (hp <= 0)//피 0 이하 되면 제거
         {
             if (this.name == "QueenBee")
+            {
+                queenSound.Stop();
                 logic.FeverUp(3);
+            }    
             else
                 logic.FeverUp(1);
 
+            beekilledSound.Play(); //벌 죽을때 Audio Play
             logic.BeeKilled();
             Destroy(gameObject);
         }
