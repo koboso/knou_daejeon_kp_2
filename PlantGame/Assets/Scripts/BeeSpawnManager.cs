@@ -13,7 +13,7 @@ public class BeeSpawnManager : MonoBehaviour
     private void Start()
     {
         logic = GameObject.Find("/GameManager").GetComponent<Logic>();
-        spawnTime = logic.BeeSpawnTime;
+        spawnTime = 5f;
     }
 
     private void Update()
@@ -21,7 +21,10 @@ public class BeeSpawnManager : MonoBehaviour
         if(logic)
         {
             if (logic.state != Logic.GameState.PLAY)
+            {
+                spawnTime = 5f;
                 return;
+            }
         }
 
         if (0 >= spawnTime)
@@ -38,9 +41,10 @@ public class BeeSpawnManager : MonoBehaviour
     public void SpawnBee(int ranNum)
     {
         //스폰타이머 리셋
-        spawnTime = logic.BeeSpawnTime;
-        Debug.Log("다음 벌은 " + spawnTime + "초");
+         spawnTime = logic.BeeSpawnTime;
+         Debug.Log("다음 벌은 " + spawnTime + "초");
         //랜덤 인덱스에 해당하는 스폰포인트에서 벌 생성
-        Instantiate(bee,spawnPoints[ranNum]);
+         Instantiate(bee, spawnPoints[ranNum]);
+
     }
 }
