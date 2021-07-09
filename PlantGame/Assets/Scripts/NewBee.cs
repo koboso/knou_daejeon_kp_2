@@ -13,6 +13,7 @@ public class NewBee : MonoBehaviour
     public int StartHealth;  // HealthBar
     public Image HealthBar;
 
+    private int maxHp = 1;
     public int hp = 1;
     private float speed = 1f;
 
@@ -55,7 +56,7 @@ public class NewBee : MonoBehaviour
                 gameObject.name = "QueenBee";
                 transform.localScale = new Vector3(0.008f, 0.008f, 0.008f);
                 spriteRenderer.color = color;
-                hp = 5;
+                maxHp = hp = 5;
                 speed = 0.5f;
                 //
                 //StartHealth = hp;  // HealthBar
@@ -129,7 +130,7 @@ public class NewBee : MonoBehaviour
     public void TakeDamage(int damage)
     {
         hp = hp - damage;
-        HealthBar.fillAmount = hp; // HealthBar
+        HealthBar.fillAmount = (float)hp/maxHp; // HealthBar
     }
 
     //마우스 클릭 시 좌표 받아서 타겟에 클릭된 좌표의 게임오브젝트를 저장
@@ -141,7 +142,7 @@ public class NewBee : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero, 0f);
         if (hit.collider != null)
         {
-            Debug.Log(hit.collider.name);
+            //Debug.Log(hit.collider.name);
             target = hit.collider.gameObject;
         }
     }
