@@ -9,5 +9,6 @@ public class GameStart : MonoBehaviour
     {
         GameObject.Find("GameManager").GetComponent<Logic>().state = Logic.GameState.PLAY;
         transform.parent.GetComponent<GameOnScreen>().Hide();
+        GameObject.Find("BeeSpawnManager").GetComponent<BeeSpawnManager>().spawnTime = 5f;
     }
 }
