@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NewBee : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class NewBee : MonoBehaviour
     private AudioSource queenSound;
     private AudioSource beekilledSound;
 
+    public int StartHealth;  // HealthBar
+    public Image HealthBar;
 
     public int hp = 1;
     private float speed = 1f;
@@ -54,6 +57,8 @@ public class NewBee : MonoBehaviour
                 spriteRenderer.color = color;
                 hp = 5;
                 speed = 0.5f;
+                //
+                //StartHealth = hp;  // HealthBar
             }
         }
 
@@ -124,6 +129,7 @@ public class NewBee : MonoBehaviour
     public void TakeDamage(int damage)
     {
         hp = hp - damage;
+        HealthBar.fillAmount = hp; // HealthBar
     }
 
     //마우스 클릭 시 좌표 받아서 타겟에 클릭된 좌표의 게임오브젝트를 저장
