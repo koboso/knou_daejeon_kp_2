@@ -13,6 +13,8 @@ public class FeverMode : MonoBehaviour
 
     public float fevertime = 5f;
 
+    public GameObject feverText;
+
     private int maxFever = 10;
 
     // Start is called before the first frame update
@@ -64,8 +66,10 @@ public class FeverMode : MonoBehaviour
     private void FeverUpdate()
     {
         if (logic.feverpoint >= maxFever)
+        {
             logic.FeverTime();
-
+            GameObject modeText = Instantiate(feverText);
+        }
         HandleFever();
     }
 
