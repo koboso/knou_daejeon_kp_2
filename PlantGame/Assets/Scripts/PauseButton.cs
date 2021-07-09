@@ -21,12 +21,12 @@ public class PauseButton : MonoBehaviour
         if (logic.state == Logic.GameState.PLAY)
         {
             logic.state = Logic.GameState.PAUSE;
-            text.text = "RESUME";
+            text.text = "PLAY";
         }
         else if (logic.state == Logic.GameState.PAUSE)
         {
             logic.state = Logic.GameState.PLAY;
-            text.text = "PAUSE";
+            text.text = "STOP";
         }
     }
   }
