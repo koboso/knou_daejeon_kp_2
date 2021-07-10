@@ -12,7 +12,7 @@ public class ScreenReset : MonoBehaviour
     }
 
     //private void Start()
-    //{ 
+    //{
     //    SetResolution();    // 초기에 게임 해상도 고정
     //}
 
@@ -38,5 +38,4 @@ public class ScreenReset : MonoBehaviour
     //        Camera.main.rect = new Rect(0f, (1f - newHeight) / 2f, 1f, newHeight); // 새로운 Rect 적용
     //    }
     //}
-
 }

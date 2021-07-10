@@ -9,16 +9,38 @@ public class GameOverScreen : MonoBehaviour
 {
     public Text treeHeight;
     public Text beesKilled;
+    public Text highScoreText;
+
+    public float highScore ; // 최고점 -----
 
     public void Setup(float score, int bee)
     {
         gameObject.SetActive(true);
-        treeHeight.text = "Tree is grown " + string.Format("{0:N2}", score) + " m";
+
+        if (score > highScore)
+        {
+            highScore = score;
+            PlayerPrefs.SetFloat("HighScore", highScore);
+            highScoreText.text = "NEW HIGHSCORE !!";
+        }
+        else
+        {
+            highScoreText.text = "High Score: " + 
+                string.Format("{0:N2}",PlayerPrefs.GetFloat("HighScore")) + " m";
+        }
+
+        treeHeight.text = "\nTree is grown " + string.Format("{0:N2}", score) + " m";
         beesKilled.text = "\nBees Killed: " + bee;
     }
 
     public void Hide()
     {
         gameObject.SetActive(false);
+    }
+
+    void Awake()
+    {
+        highScore = PlayerPrefs.GetFloat("HighScore");
+
     }
 }
