@@ -43,7 +43,6 @@ public class Logic : MonoBehaviour{
         get { return 1; }
     }
 
-
     // Update is called once per frame
     void Update(){
         GameLogic();
