@@ -76,7 +76,7 @@ public class UIController : MonoBehaviour {
 
     private void GameOver()
     {
-        if (gameOverScreen)
+        if (gameOverScreen && gameOverScreen.gameObject.activeInHierarchy == false)
         {
             gameOverScreen.Setup(logic.treeHeight, logic.beesKilled);
         }
@@ -84,7 +84,7 @@ public class UIController : MonoBehaviour {
 
     private void GameReady()
     {
-        if (gameOnScreen)
+        if (gameOnScreen && gameOnScreen.gameObject.activeInHierarchy == false)
             gameOnScreen.Show();
     }
 }
