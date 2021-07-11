@@ -44,7 +44,7 @@ public class GameOverScreen : MonoBehaviour
         }
         else
         {
-            highScoreText.text = "Today High: " + 
+            highScoreText.text = "Today's High: " + 
                 string.Format("{0:N2}",PlayerPrefs.GetFloat("TodayHighScore")) + " m";
         }
 
@@ -61,8 +61,7 @@ public class GameOverScreen : MonoBehaviour
     void Awake()
     {
         DateTime dt = DateTime.Now;  // 
-        string today = dt.ToString("yyyy-MM-dd");
-        Debug.Log(today);
+        today = dt.ToString("yyyy-MM-dd");
 
         allTimeHighScore = PlayerPrefs.GetFloat("AllTimeHighScore");
         allTimeHighDate = PlayerPrefs.GetString("AllTimeHighDate");
