@@ -54,7 +54,8 @@ public class NewBee : MonoBehaviour
 
                 Debug.Log("여왕벌");
                 gameObject.name = "QueenBee";
-                transform.localScale = new Vector3(0.008f, 0.008f, 0.008f);
+                transform.localScale *= 2.0f;
+//                transform.localScale = new Vector3(0.008f, 0.008f, 0.008f);
                 spriteRenderer.color = color;
                 maxHp = hp = 5;
                 speed = 0.5f;
@@ -63,7 +64,7 @@ public class NewBee : MonoBehaviour
             }
         }
 
-        speed *= 0.02f;
+        speed *= 0.015f;
     }
 
     private void Update()
