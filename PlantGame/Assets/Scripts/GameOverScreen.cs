@@ -11,6 +11,8 @@ public class GameOverScreen : MonoBehaviour
     public Text treeHeight;
     public Text beesKilled;
     public Text highScoreText;
+    public Text alltimeHighScoreText;
+    public Text alltimeHighDateText;
 
 
     private float allTimeHighScore;
@@ -27,29 +29,25 @@ public class GameOverScreen : MonoBehaviour
         {
             todayHighScore = score;
             todayHighDate = today;
-            PlayerPrefs.SetFloat("TodayHighScore", todayHighScore);
-            PlayerPrefs.SetString("TodayHighDate", todayHighDate);
             highScoreText.text = "TODAY'S BEST !!";
 
             if(allTimeHighScore < score)  // 지금까지의 최고점 기록
             {
                 allTimeHighScore = score;
                 allTimeHighDate = today;
-                PlayerPrefs.SetFloat("AllTimeHighScore", allTimeHighScore);
-                PlayerPrefs.SetString("AllTimeHighDate", allTimeHighDate);
                 highScoreText.text = "ALLTIME BEST !!";
-
+                
             }
-            PlayerPrefs.Save();
+            SaveScore();
         }
         else
         {
             highScoreText.text = "Today's High: " + 
                 string.Format("{0:N2}",PlayerPrefs.GetFloat("TodayHighScore")) + " m";
         }
-
         treeHeight.text = "\nTree is grown " + string.Format("{0:N2}", score) + " m";
         beesKilled.text = "\nBees Killed: " + bee;
+        SetScore();
     }
 
     public void Hide()
@@ -73,5 +71,32 @@ public class GameOverScreen : MonoBehaviour
             todayHighDate = today;
             todayHighScore = 0;
         }
+        SetScore();
+    }
+
+    void SetScore()
+    {
+        alltimeHighScoreText.text = "Score: " +
+            string.Format("{0:N2}", PlayerPrefs.GetFloat("AllTimeHighScore")) + " m";
+        alltimeHighDateText.text = "Date: " +
+            string.Format("{0:N2}", PlayerPrefs.GetString("AllTimeHighDate"));
+    }
+
+    void SaveScore()
+    {
+        PlayerPrefs.SetFloat("AllTimeHighScore", allTimeHighScore);
+        PlayerPrefs.SetString("AllTimeHighDate", allTimeHighDate);
+        PlayerPrefs.SetFloat("TodayHighScore", todayHighScore);
+        PlayerPrefs.SetString("TodayHighDate", todayHighDate);
+        PlayerPrefs.Save();
+    }
+    public void ResetScore()
+    {
+        allTimeHighDate = "";
+        allTimeHighScore = 0f;
+        todayHighDate = "";
+        todayHighScore = 0f;
+        SaveScore();
+        SetScore();
     }
 }

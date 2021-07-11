@@ -22,5 +22,9 @@ public class MainMenuOption : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
- 
+    public void Score()
+    {
+        SceneManager.LoadScene(3);
+
+    }
 }
