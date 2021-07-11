@@ -10,7 +10,7 @@ public class Logic : MonoBehaviour{
 
     public float growthSpeed = 0.003f;      // 프레임당 성장 속도 (프레임당)
     public float clickGrowthSpeed = 0.2f;   // 클릭시 성장 속도 (클릭당)
-    public float feverGrowthSpeed = 0.006f; // 피버 성장속도 (프레임당)
+    public float feverGrowthSpeed = 0.009f; // 피버 성장속도 (프레임당)
     public float treeHeight = 0f;
     public int beesKilled = 0;
     public int feverpoint = 0;

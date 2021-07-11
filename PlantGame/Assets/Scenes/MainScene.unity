@@ -524,7 +524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &370824228
 RectTransform:
   m_ObjectHideFlags: 0
@@ -565,7 +565,6 @@ MonoBehaviour:
   treeHeight: {fileID: 1857987532}
   beesKilled: {fileID: 1482293462}
   highScoreText: {fileID: 796529663}
-  highScore: 0
 --- !u!114 &370824230
 MonoBehaviour:
   m_ObjectHideFlags: 0
