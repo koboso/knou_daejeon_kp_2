@@ -14,7 +14,7 @@ public class PauseButton : MonoBehaviour
         //로직 가져옴
         logic = GameObject.Find("/GameManager").GetComponent<Logic>();
         text = transform.Find("Text").GetComponent<Text>();
-        text.text = "PAUSE";
+        text.text = "STOP";
     }
 
     public void TogglePause()
@@ -22,12 +22,12 @@ public class PauseButton : MonoBehaviour
         if (logic.state == Logic.GameState.PLAY)
         {
             logic.state = Logic.GameState.PAUSE;
-            text.text = "RESUME";
+            text.text = "PLAY";
         }
         else if (logic.state == Logic.GameState.PAUSE)
         {
             logic.state = Logic.GameState.PLAY;
-            text.text = "PAUSE";
+            text.text = "STOP";
         }
     }
   }
