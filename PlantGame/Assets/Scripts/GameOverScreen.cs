@@ -52,11 +52,11 @@ public class GameOverScreen : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    // 하루와 지금까지의 최고점수 
+    // 하루(Today)와 지금까지의 최고점수 
     void Awake()
     {
-        DateTime dt = DateTime.Now;  // 
-        today = dt.ToString("yyyy-MM-dd");
+        DateTime dt = DateTime.Now;  
+        today = dt.ToString("yyyy-MM-dd"); // 오늘 날짜를 문자화
 
         allTimeHighScore = PlayerPrefs.GetFloat("AllTimeHighScore");
         allTimeHighDate = PlayerPrefs.GetString("AllTimeHighDate");
@@ -70,6 +70,7 @@ public class GameOverScreen : MonoBehaviour
         }
     }
 
+    // 점수와 날짜 저장
     void SaveScore()
     {
         PlayerPrefs.SetFloat("AllTimeHighScore", allTimeHighScore);
@@ -78,6 +79,8 @@ public class GameOverScreen : MonoBehaviour
         PlayerPrefs.SetString("TodayHighDate", todayHighDate);
         PlayerPrefs.Save();
     }
+
+    // 점수와 날짜 리셋
     public void ResetScore()
     {
         allTimeHighDate = "";

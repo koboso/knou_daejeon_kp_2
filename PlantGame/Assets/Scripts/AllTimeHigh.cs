@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
+// 지금까지의 기록 중 최고 점수와 날짜 저장 및 리셋
 
 public class AllTimeHigh : MonoBehaviour
 {
@@ -18,8 +19,8 @@ public class AllTimeHigh : MonoBehaviour
 
     void Awake()
     {
-        DateTime dt = DateTime.Now;  // 
-        today = dt.ToString("yyyy-MM-dd");
+        DateTime dt = DateTime.Now;  
+        today = dt.ToString("yyyy-MM-dd"); // 오늘 날짜를 문자화
 
         allTimeHighScore = PlayerPrefs.GetFloat("AllTimeHighScore");
         allTimeHighDate = PlayerPrefs.GetString("AllTimeHighDate");
@@ -34,7 +35,7 @@ public class AllTimeHigh : MonoBehaviour
         SetScore();
     }
 
-
+    // 점수와 날짜 출력
     void SetScore()
     {
         alltimeHighScoreText.text = "Score: " +
@@ -43,6 +44,7 @@ public class AllTimeHigh : MonoBehaviour
             string.Format("{0:N2}", PlayerPrefs.GetString("AllTimeHighDate"));
     }
 
+    // 점수와 날짜 저장
     void SaveScore()
     {
         PlayerPrefs.SetFloat("AllTimeHighScore", allTimeHighScore);
@@ -52,6 +54,7 @@ public class AllTimeHigh : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    // 점수와 날짜 리셋
     public void ResetScore()
     {
         allTimeHighDate = "";
