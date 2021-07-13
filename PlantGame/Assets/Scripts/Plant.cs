@@ -100,7 +100,10 @@ public class Plant : MonoBehaviour{
                 // 플레이 상태의 UI 처리
                 break;
             case Logic.GameState.FEVER:
-                GrowPlant(GrowthType.FEVER);
+                if (Input.GetMouseButtonUp(0))
+                    GrowPlant(GrowthType.CLICK);
+                else
+                    GrowPlant(GrowthType.FEVER);
                 break;
             case Logic.GameState.PAUSE:
                 // 멈춤 상태의 UI처리
