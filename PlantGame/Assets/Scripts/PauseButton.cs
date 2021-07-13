@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Pause/Stop 토글 버튼
 public class PauseButton : MonoBehaviour
 {
-
     private Logic logic;
     private Text text;
 

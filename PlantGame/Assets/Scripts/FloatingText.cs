@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 애니메이션 text를 1초 후에 삭제
 public class FloatingText : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
         Destroy(gameObject, 1);

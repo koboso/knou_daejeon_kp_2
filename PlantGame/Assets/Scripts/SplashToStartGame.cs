@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// splash 스크린 
 public class SplashToStartGame : MonoBehaviour
 {
     void Start()

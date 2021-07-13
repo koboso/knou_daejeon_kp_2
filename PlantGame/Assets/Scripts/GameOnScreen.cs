@@ -7,7 +7,7 @@ public class GameOnScreen : MonoBehaviour
 {
     public void Show()
     {
-        gameObject.SetActive(true); // 
+        gameObject.SetActive(true); 
     }
 
     public void Hide()

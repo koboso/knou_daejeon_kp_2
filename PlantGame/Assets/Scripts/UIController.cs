@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+// 캔버스에서 일어나는 UI 처리
 public class UIController : MonoBehaviour {
     private Logic logic = null;
 
@@ -52,6 +53,7 @@ public class UIController : MonoBehaviour {
         
     }
 
+    // 스코어 출력
     private void DisplayScoreLine()
     {
         if (scoreLine)
@@ -59,12 +61,14 @@ public class UIController : MonoBehaviour {
                 "Tree Height: " + string.Format("{0:N1}", logic.treeHeight) + "m";
     }
 
+    // 게임레디 상태에서 스코어라인
     private void DisplayReadyLine()
     {
         if(scoreLine)
             scoreLine.text = "Tree Height: 0.0 m";
     }
 
+    // 플로팅텍스트 출력
     public void DisplayFloatingText(string text)
     {
         if (floatingTextPrefab)
@@ -74,6 +78,7 @@ public class UIController : MonoBehaviour {
         }
     }
 
+    // 게임오버시 처리내용
     private void GameOver()
     {
         if (gameOverScreen && gameOverScreen.gameObject.activeInHierarchy == false)
@@ -82,6 +87,7 @@ public class UIController : MonoBehaviour {
         }
     }
 
+    // 게임레디 화면을 표시
     private void GameReady()
     {
         if (gameOnScreen && gameOnScreen.gameObject.activeInHierarchy == false)

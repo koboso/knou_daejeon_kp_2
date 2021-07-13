@@ -13,10 +13,10 @@ public class GameOverScreen : MonoBehaviour
     public Text highScoreText;
  
 
-    private float allTimeHighScore;
-    private string allTimeHighDate;
-    private float todayHighScore;
-    private string todayHighDate;
+    private float allTimeHighScore; // 지금까지의 최고 점수
+    private string allTimeHighDate; // 지금까지의 최고 점수 낸 날짜
+    private float todayHighScore; // 오늘의 최고점
+    private string todayHighDate; // 오늘의 최고점 낸 날짜
     private string today;
 
     public void Setup(float score, int bee)

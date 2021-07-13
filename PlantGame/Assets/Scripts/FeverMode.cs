@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// 피버기능과 피버바 처리
 public class FeverMode : MonoBehaviour
 {
     private Logic logic = null;
@@ -17,7 +18,6 @@ public class FeverMode : MonoBehaviour
 
     private int maxFever = 10;
 
-    // Start is called before the first frame update
     void Start()
     {
         //로직 가져옴
@@ -26,7 +26,6 @@ public class FeverMode : MonoBehaviour
         HandleFever();
     }
 
-    // Update is called once per frame
     void Update()
     {
         switch (logic.state)
@@ -52,6 +51,7 @@ public class FeverMode : MonoBehaviour
 
     }
 
+    // 피버 초기화
     private void InitFever()
     {
         logic.feverpoint = 0;
@@ -73,6 +73,7 @@ public class FeverMode : MonoBehaviour
         HandleFever();
     }
 
+    // 피버 타임
     private void FeverTime()
     {
         fevertime -= Time.deltaTime;
@@ -86,6 +87,7 @@ public class FeverMode : MonoBehaviour
         }
     }
 
+    // 피버바 그리는 곳
     private void HandleFever()
     {
         feverbar.maxValue = maxFever;
