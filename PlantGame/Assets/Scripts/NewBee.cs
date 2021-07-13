@@ -17,6 +17,8 @@ public class NewBee : MonoBehaviour
     public int hp = 1;
     private float speed = 1f;
 
+    private bool isClick = false;       // 클릭이 감지될떄 true로 변경.
+
     // 처음 생성되는 포지션.
     private Vector3 initPos;
     private Vector3 dir = Vector3.left;
@@ -110,15 +112,19 @@ public class NewBee : MonoBehaviour
         else
         {
              Fly();
-             if (Input.GetMouseButtonDown(0))//마우스 클릭 시
+             if (isClick == false && Input.GetMouseButtonDown(0))//마우스 클릭 시
              {
+                  isClick = true;
                   CastRay();//마우스 클릭 좌표에 있는 오브젝트 가져와서
                   if (target == this.gameObject)//Bee라면
                   {
                       TakeDamage(1);//피 1 감산
                   }
              }
-            
+             if(Input.GetMouseButtonUp(0))
+             {
+                isClick = false;
+             }
         }
     }
 
