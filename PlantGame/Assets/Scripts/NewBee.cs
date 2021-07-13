@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// 벌의 행동 처리 
 public class NewBee : MonoBehaviour
 {
     private Logic logic;
 
-    private AudioSource queenSound;
+    private AudioSource queenSound; // 오디오
     private AudioSource beekilledSound;
 
     public int StartHealth;  // HealthBar
     public Image HealthBar;
 
-    private int maxHp = 1;
+    private int maxHp = 1; // 벌의 피와 스피드
     public int hp = 1;
     private float speed = 1f;
 
@@ -75,13 +76,13 @@ public class NewBee : MonoBehaviour
             switch (logic.state)
             {
                 case Logic.GameState.READY:
-                    Destroy(gameObject);
+                    Destroy(gameObject); // 준비때는 벌이 없음
                     break;
                 case Logic.GameState.PLAY:
-                    UpdateBee();
+                    UpdateBee(); // 벌 움직이는것
                     break;
                 case Logic.GameState.FEVER:
-                    FeverKill();
+                    FeverKill(); // 피버상태에서 모든 벌이 죽는것
                     break;
                 case Logic.GameState.CLEAR:
                     break;
@@ -128,7 +129,7 @@ public class NewBee : MonoBehaviour
         }
     }
 
-    private void FeverKill()
+    private void FeverKill() // 피버때 벌이 죽는다
     {
         Destroy(gameObject);
     }

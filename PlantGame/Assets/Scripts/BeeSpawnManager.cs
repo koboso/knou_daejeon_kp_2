@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 벌 생성
 public class BeeSpawnManager : MonoBehaviour
 {
     private Logic logic = null;
 
     public float spawnTime;
     public Transform[] spawnPoints;
-    public GameObject bee;
+    public GameObject bee; // 생성될 bee 프리팹
 
     private void Start()
     {
         logic = GameObject.Find("/GameManager").GetComponent<Logic>();
-        spawnTime = 5f;
+        spawnTime = 5f; // 첫 생성이 5초 후
     }
 
     private void Update()
@@ -29,7 +30,7 @@ public class BeeSpawnManager : MonoBehaviour
                     //랜덤 인덱스에 해당하는 스폰포인트에서 벌 생성
                     SpawnBee(x);
                 }
-                spawnTime -= Time.deltaTime;
+                spawnTime -= Time.deltaTime; 
             }
         }
     }

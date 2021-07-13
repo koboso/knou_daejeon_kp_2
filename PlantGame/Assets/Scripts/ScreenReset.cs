@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 화면 해상도 고정
 public class ScreenReset : MonoBehaviour
 {
 

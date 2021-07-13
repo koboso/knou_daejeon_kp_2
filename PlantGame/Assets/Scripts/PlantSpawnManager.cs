@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 나무가 성장하면서 새로운 잎을 생성하는 클래스
+// 나무 전체의 키나 나무를 아래로 스크롤 하는 함수들
 public class PlantSpawnManager : MonoBehaviour {
     Logic logic = null;
     UIController ui = null;
@@ -60,11 +62,12 @@ public class PlantSpawnManager : MonoBehaviour {
         float height = indexHead - 1 + topPlant.plantHeight;
         transform.position = initPosition + new Vector3(0f, -height * 50, 0f);
 
-        logic.treeHeight = height;
+        logic.SetHeight(height);
 
         isInit = false;
     }
 
+    // 새로운 잎 생성
     public void CreatePlant() {
         GameObject p = Instantiate(Resources.Load("Prefabs/BabyPlant") as GameObject, transform);
 

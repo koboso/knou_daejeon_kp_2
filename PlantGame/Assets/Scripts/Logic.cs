@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+// 게임의 난이도, 확률, 점수 등을 위한 로직
 public class Logic : MonoBehaviour{
     // Game State 
     public enum GameState {READY = 0, PLAY, FEVER, CLEAR, GAMEOVER, PAUSE };
@@ -45,30 +46,7 @@ public class Logic : MonoBehaviour{
         get { return 1; }
     }
 
-    // Update is called once per frame
-    void Update(){
-        GameLogic();
-    }
-
-    public void GameLogic()
-    {
-        switch (state)
-        {
-            case GameState.READY:
-                break;
-            case GameState.PLAY:
-                break;
-            case GameState.CLEAR:
-                break;
-            case GameState.PAUSE:
-                break;
-            case GameState.GAMEOVER:
-                break;
-        }
-
-    }
-
-     public void BeeKilled()
+    public void BeeKilled() // 벌 잡을때마다
     {
         this.beesKilled++;
     }
@@ -93,7 +71,8 @@ public class Logic : MonoBehaviour{
         feverpoint = 0;
     }
 
-    public void setHeight(float height)
+    // 나무 키 계산은 PlantSpawnManager 에서 한다
+    public void SetHeight(float height)
     {
         this.treeHeight = height;
     }

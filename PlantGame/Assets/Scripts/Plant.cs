@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 잎파리 하나가 성장하면서 꽃 피우는거
 public class Plant : MonoBehaviour{
     [SerializeField]
     private Color color;
@@ -13,7 +14,8 @@ public class Plant : MonoBehaviour{
         LGROW,
         GROWN
     };
-
+    
+    // 성장타입
     private enum GrowthType
     {
         NORMAL = 0,
@@ -27,9 +29,9 @@ public class Plant : MonoBehaviour{
 
     public float plantHeight = 0f;          // 현재 키
     public float extraGrowth = 0f;          // 추가로 옆으로 더 크는 양
-    public Vector3 Height
+    public Vector3 Height 
     {
-        get { return plantHeight * endScale;  }
+        get { return plantHeight * endScale;  } // 현재 잎의 높이
     }
 
     // 시작 스케일에서 키성장 종료 스케일까지
@@ -54,6 +56,7 @@ public class Plant : MonoBehaviour{
         }
     }
 
+    // 잎이 생성될때 좌우 반전을 하거나 꽃을 피울건지 여부 결정
     void Start(){
         logic = GameObject.Find("/GameManager").GetComponent<Logic>();
         psm = transform.parent.GetComponent<PlantSpawnManager>();
@@ -171,6 +174,7 @@ public class Plant : MonoBehaviour{
         return false;
     }
 
+    // 잎의 좌우반전
     void RandomFlipX(GameObject g)
     {
         if (Random.Range(0, 2) == 1)
