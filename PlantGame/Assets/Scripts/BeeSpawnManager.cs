@@ -8,7 +8,7 @@ public class BeeSpawnManager : MonoBehaviour
     private Logic logic = null;
 
     public float spawnTime;
-    public Transform[] spawnPoints;
+    public Transform[] spawnPoints;//스폰될 위치들 오브젝트
     public GameObject bee; // 생성될 bee 프리팹
 
     private void Start()

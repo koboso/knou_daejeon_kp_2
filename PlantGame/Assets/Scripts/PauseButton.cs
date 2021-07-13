@@ -17,6 +17,7 @@ public class PauseButton : MonoBehaviour
         text.text = "STOP";
     }
 
+    //STOP, PLAY 텍스트 변환
     public void TogglePause()
     {
         if (logic.state == Logic.GameState.PLAY)

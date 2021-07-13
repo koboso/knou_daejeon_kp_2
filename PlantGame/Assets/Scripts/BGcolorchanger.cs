@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//배경색 나무 높이, HSV기반으로 변경
+
+//배경색을 나무 높이 기반으로 HSV로 변경
 public class BGcolorchanger : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
