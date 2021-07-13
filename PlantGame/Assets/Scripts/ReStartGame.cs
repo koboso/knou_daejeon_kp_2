@@ -9,7 +9,9 @@ public class ReStartGame : MonoBehaviour
     public void NewGame()
     {
         GameObject.Find("GameManager").GetComponent<Logic>().state = Logic.GameState.READY;
-        transform.parent.GetComponent<GameOverScreen>().Hide();
+        //transform.parent.GetComponent<GameOverScreen>().Hide();
+        if(gameObject.transform.parent.name == "GameOverScreen")
+        { transform.parent.GetComponent<GameOverScreen>().Hide(); }
     }
 
 }
