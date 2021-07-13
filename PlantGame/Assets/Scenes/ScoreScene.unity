@@ -894,12 +894,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1045548522}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d19e526e33e9d043af749a781f41510, type: 3}
+  m_Script: {fileID: 11500000, guid: 83e3e4c0916e0f9479ac22719a6d26fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  treeHeight: {fileID: 0}
-  beesKilled: {fileID: 0}
-  highScoreText: {fileID: 0}
   alltimeHighScoreText: {fileID: 991841779}
   alltimeHighDateText: {fileID: 1865077019}
 --- !u!114 &1045548525
@@ -1415,7 +1412,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1045548524}
+      - m_Target: {fileID: 0}
         m_MethodName: ResetScore
         m_Mode: 1
         m_Arguments:

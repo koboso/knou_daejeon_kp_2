@@ -2225,6 +2225,11 @@ PrefabInstance:
       objectReference: {fileID: 330580998}
     - target: {fileID: 911256419482876710, guid: 3158bf4e15a766b459e8a558e84de7cd,
         type: 3}
+      propertyPath: feverGrowthSpeed
+      value: 0.012
+      objectReference: {fileID: 0}
+    - target: {fileID: 911256419482876710, guid: 3158bf4e15a766b459e8a558e84de7cd,
+        type: 3}
       propertyPath: floatingTextPrefab
       value: 
       objectReference: {fileID: 0}
