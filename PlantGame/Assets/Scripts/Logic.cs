@@ -24,13 +24,15 @@ public class Logic : MonoBehaviour{
     public bool BloomFlower
     {   get { return Random.Range(0f, treeHeight + 20) < treeHeight; }}
 
-    // 여왕벌 생성 확률
+    // 여왕벌 생성 확률 - 20마리 잡을때마다 확률이 커짐
     public bool QueenBee
-    {   get { return Random.Range(0, 31) == 1;  }}
+    {   get { return Random.Range(0, 31 - beesKilled / 20) == 0;  }}
 
     // 벌 날아가는 속도 - 숫자가 클 수록 빠름
     public float BeeSpeed
-    {   get { return Random.Range(0.3f, 1.2f);  }}
+    {   get {
+            float factor = (float)beesKilled / 300 + 1;
+            return Random.Range(0.3f, 1.2f) * factor;  }}
 
     // 벌 생성되는 시간 - 길수록 늦게 생성됨, 최고 0.5초 단위
     public float BeeSpawnTime
