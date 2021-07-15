@@ -19,6 +19,8 @@ public class NewBee : MonoBehaviour
     private float speed = 1f;
 
     private bool isClick = false;       // 클릭이 감지될떄 true로 변경.
+    //private bool isLive = true;        // 벌이 죽었는지 여부
+    private bool isDead = false;
 
     // 처음 생성되는 포지션.
     private Vector3 initPos;
@@ -31,6 +33,9 @@ public class NewBee : MonoBehaviour
     private Color color;
     private SpriteRenderer spriteRenderer;
 
+    // 죽을때 애니메이션 변경을 위함
+    private Animator ani;
+
     private void Start()
     {
         logic = GameObject.Find("/GameManager").GetComponent<Logic>();
@@ -38,13 +43,18 @@ public class NewBee : MonoBehaviour
         beekilledSound = GameObject.Find("BeeKilled").GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        initPos = transform.position;//초반 생성좌표
+        ani = GetComponent<Animator>();
+
+        initPos = transform.position;//초반 생성좌표'
+        isDead = false;
 
         // 왼쪽 에서 벌이 생성된경우. 방향 바꾸고 오른쪽으로 이동
         if (initPos.x < 0.00f)
         {
             spriteRenderer.flipX = true;
             dir = Vector3.right;
+
+            ani.SetBool("isLeft", true);
         }
 
         if (logic) {
@@ -57,13 +67,10 @@ public class NewBee : MonoBehaviour
 
                 Debug.Log("여왕벌");
                 gameObject.name = "QueenBee";
-                transform.localScale *= 2.0f;
-//                transform.localScale = new Vector3(0.008f, 0.008f, 0.008f);
+                transform.localScale *= 2.0f;       // 여왕벌의 크기는 가로세로 각각 두배
                 spriteRenderer.color = color;
                 maxHp = hp = 5;
                 speed = 0.5f;
-                //
-                //StartHealth = hp;  // HealthBar
             }
         }
 
@@ -96,6 +103,8 @@ public class NewBee : MonoBehaviour
 
     private void UpdateBee()
     {
+        if (isDead == true) return;     // 벌이 죽었으면 아무것도 하지 않음
+
         if (hp <= 0)//피 0 이하 되면 제거
         {
             if (this.name == "QueenBee")
@@ -108,7 +117,12 @@ public class NewBee : MonoBehaviour
 
             beekilledSound.Play(); //벌 죽을때 Audio Play
             logic.BeeKilled();
-            Destroy(gameObject);
+            isDead = true;
+
+            // 죽을때 애니메이션 적용
+            //ani.SetBool("isLive", false);
+            ani.SetTrigger("BeeDie");
+            Destroy(gameObject, 1); // 애니메이션 1초 후 오브젝트 제거
         }
         else
         {
@@ -131,7 +145,12 @@ public class NewBee : MonoBehaviour
 
     private void FeverKill() // 피버때 벌이 죽는다
     {
-        Destroy(gameObject);
+        if(isDead == false)
+        {
+            ani.SetTrigger("BeeDie");
+            Destroy(gameObject, 1);
+            isDead = true;
+        }
     }
 
     //지정한 정수의 데미지를 hp에서 감산
