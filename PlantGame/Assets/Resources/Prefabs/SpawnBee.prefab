@@ -406,4 +406,4 @@ MonoBehaviour:
   StartHealth: 0
   HealthBar: {fileID: 6645735514676660984}
   hp: 1
-  color: {r: 1, g: 0.66368854, b: 0.4575472, a: 1}
+  color: {r: 1, g: 0.47811913, b: 0.35294116, a: 1}

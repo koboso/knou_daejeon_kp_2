@@ -122,7 +122,7 @@ public class NewBee : MonoBehaviour
             // 죽을때 애니메이션 적용
             //ani.SetBool("isLive", false);
             ani.SetTrigger("BeeDie");
-            Destroy(gameObject, 1); // 애니메이션 1초 후 오브젝트 제거
+            Destroy(gameObject, 0.5f); // 애니메이션 0.5초 후 오브젝트 제거
         }
         else
         {
