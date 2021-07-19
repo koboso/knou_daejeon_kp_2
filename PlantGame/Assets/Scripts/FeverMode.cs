@@ -31,7 +31,7 @@ public class FeverMode : MonoBehaviour
         switch (logic.state)
         {
             case Logic.GameState.READY:
-                if (isInit)
+                //if (isInit)
                     InitFever();
                 break;
             case Logic.GameState.PLAY:
