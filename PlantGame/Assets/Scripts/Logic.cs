@@ -35,7 +35,7 @@ public class Logic : MonoBehaviour{
             float factor = (float)beesKilled / 300 + 1;
             return Random.Range(0.3f, 1.2f) * factor;  }}
 
-    // 벌 생성되는 시간 - 길수록 늦게 생성됨, 최고 0.5초 단위
+    // 벌 생성되는 시간 - 길수록 늦게 생성됨, 최저 0.2초 단위
     public float BeeSpawnTime
     {
         get { return 4f - Mathf.Min(3.8f, Random.Range((float)beesKilled/10, (float)(beesKilled+5)) / 5); }
