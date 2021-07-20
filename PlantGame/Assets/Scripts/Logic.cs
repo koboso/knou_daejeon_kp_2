@@ -83,4 +83,11 @@ public class Logic : MonoBehaviour{
         beesKilled = 0;
     }
 
+    // 스타트일때 피버포인트 초기화
+    public void GameReady()
+    {
+        state = GameState.READY;
+        feverpoint = 0;
+        InitScore();
+    }
 }
